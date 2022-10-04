@@ -47,10 +47,18 @@ class Label(models.Model):
 class EntryItem(models.Model):
     is_debit = models.BooleanField()
     amount = models.FloatField()
-    type = models.ForeignKey(AccountType, on_delete=models.SET_NULL, blank=True, null=True)
-    entry = models.ForeignKey(AccountingEntry, on_delete=models.PROTECT)
-    label = models.ForeignKey(Label, on_delete=models.SET_NULL, blank=True, null=True)
-    project = models.ForeignKey(Project, on_delete=models.SET_NULL, blank=True, null=True)
+    type = models.ForeignKey(
+        AccountType, on_delete=models.SET_NULL, blank=True, null=True
+    )
+    entry = models.ForeignKey(
+        AccountingEntry, on_delete=models.PROTECT, related_name="items"
+    )
+    label = models.ForeignKey(
+        Label, on_delete=models.SET_NULL, blank=True, null=True
+    )
+    project = models.ForeignKey(
+        Project, on_delete=models.SET_NULL, blank=True, null=True
+    )
 
     def __str__(self):
         return f"entry with type {self.type.name} and ledger id: {self.entry.id}"

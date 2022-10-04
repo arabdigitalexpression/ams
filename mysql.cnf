@@ -2,4 +2,4 @@
 database = AMS
 user = adef_ams
 password = Adef@ams2022
-default-character-set = utf8
+default-character-set = utf8mb4

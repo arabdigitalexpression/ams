@@ -5,8 +5,8 @@ from rest_framework import mixins
 from rest_framework import permissions  # authentication
 from django.contrib.auth.models import User
 
-from .models import Project, Label, AccountType, AccountingEntry, EntryItem
-from .serializers import (
+from main.models import Project, Label, AccountType, AccountingEntry, EntryItem
+from main.serializers import (
     UserSerializer, ProjectSerializer, LabelSerializer, AccountTypeSerializer,
     AccountingEntrySerializer, EntryItemSerializer,
 )

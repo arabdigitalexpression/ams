@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1>Accounting Entries</h1>
+<ul>
+{% for entry in object_list %}
+    <li>{{ entry.serial_number }}</li>
+{% empty %}
+    <li>No Accounting Entries yet.</li>
+{% endfor %}
+</ul>
+{% endblock %}

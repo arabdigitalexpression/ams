@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <h2>Items</h2>
+    {{ items.empty_form.as_hidden }}
+    {{ items.as_p }}
+    <input type="submit" value="Create">
+</form>
+{% endblock %}

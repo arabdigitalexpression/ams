@@ -10,6 +10,10 @@ class AccountType(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('account-type-detail', kwargs={'pk': self.pk})
+
 
 class Project(models.Model):
     name = models.CharField(max_length=100)
@@ -17,6 +21,10 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('project-detail', kwargs={'pk': self.pk})
 
 
 class AccountingEntry(models.Model):
@@ -34,6 +42,10 @@ class AccountingEntry(models.Model):
 
     def __str__(self):
         return f"serial: {self.serial_number}"
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('entry-detail', kwargs={'pk': self.pk})
 
 
 class Label(models.Model):

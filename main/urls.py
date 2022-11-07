@@ -1,6 +1,8 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from rest_framework.routers import DefaultRouter
+
+from .forms import LoginForm
 from .views import (
     UserViewSet, ProjectViewSet, LabelViewSet, AccountTypeViewSet,
     AccountingEntryViewSet, EntryItemViewSet, ProjectDetailView,
@@ -11,6 +13,7 @@ from .views import (
     AccountingEntryDetailView,
     # setupView
 )
+from .views.accounting_entry import create_entry
 
 user_router = DefaultRouter()
 user_router.register(r'api/users', UserViewSet, basename='user')
@@ -41,7 +44,7 @@ urlpatterns += [
     # TODO: the setup route here are for first time web app setup wizard.
     # path('setup/', setupView, name="setup"),
 
-    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+    path('accounts/login/', auth_views.LoginView.as_view(form_class=LoginForm), name='login'),
 
     path('projects/', ProjectListView.as_view(), name='project-list'),
     path('projects/create/', ProjectCreateView.as_view(), name='project-create'),
@@ -54,6 +57,6 @@ urlpatterns += [
     path('account-types/<int:pk>/update/', AccountTypeUpdateView.as_view(), name='account-type-update'),
 
     path('entries/', AccountingEntryListView.as_view(), name='entry-list'),
-    path('entries/create/', AccountingEntryCreateView.as_view(), name='entry-create'),
+    path('entries/create/', create_entry, name='entry-create'),
     path('entries/<int:pk>/', AccountingEntryDetailView.as_view(), name='entry-detail'),
 ]

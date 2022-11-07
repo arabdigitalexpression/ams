@@ -1,11 +1,104 @@
 {% extends 'main/base.html' %}
+{% load static %}
+
+{% block styles %}
+    {{ block.super }}
+    <link href="{% static 'css/select2.min.css' %}" rel="stylesheet" />
+{% endblock %}
 
 {% block content %}
+
+{% if formset.non_field_errors %}
+    <ul>
+    {% for error in formset.non_field_errors %}
+        <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if form.errors %}
+    <ul>
+    {% for error in form.errors %}
+        <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
 <form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <h2>Items</h2>
-    {{ items.empty_form.as_hidden }}
-    {{ items.as_p }}
-    <input type="submit" value="Create">
+    <hr/>
+
+    <table class="text-center table">
+        <thead class="text-white bg-dark">
+            <tr>
+                <th scope="col">حساب</th>
+                <th scope="col">مبلغ مدين</th>
+                <th scope="col">مبلغ دائن</th>
+                <th scope="col">حساب</th>
+                <th scope="col">مشروع</th>
+            </tr>
+        </thead>
+        <tbody id="form-container">
+            <tr>
+                <td>{{debit_form.type}}</td>
+                <td>{{debit_form.amount}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            {{ formset.management_form}}
+            {% for form in formset %}
+            <tr class="credit-form">
+                {{ form.is_debit }}
+                <td></td>
+                <td></td>
+                <td>{{ form.amount }}</td>
+                <td>{{ form.type }}</td>
+                <td>{{ form.project }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div>
+        {{ form }}
+    </div>
+
+    <button id="add-form" class="btn btn-primary" type="button">إضافة بند دائن</button>
+    <input class="btn btn-success" type="submit" value="حفظ">
 </form>
+{% endblock %}
+{% block scripts %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/select2.min.js' %}"></script>
+    <script>
+    let creditForm = document.querySelectorAll(".credit-form");
+    let container = document.querySelector("#form-container");
+    let addButton = document.querySelector("#add-form");
+    let totalForms = document.querySelector("#id_items-TOTAL_FORMS");
+
+    let formNum = creditForm.length-1;
+    addButton.addEventListener('click', addForm);
+
+    function addForm(e){
+        e.preventDefault();
+
+        $(".select-box").select2("destroy");
+
+        let newForm = creditForm[0].cloneNode(true);
+        let formRegex = RegExp(`items-(\\d)-`,'g');
+
+        formNum++;
+        newForm.innerHTML = newForm.innerHTML
+            .replace(formRegex, `items-${formNum}-`);
+        container.appendChild(newForm);
+
+        totalForms.setAttribute('value', `${formNum+1}`);
+
+        $(".select-box").select2();
+    }
+
+    $(document).ready(function() {
+        $('.select-box').select2({
+            placeholder: "الرجاء الاختيار"
+        });
+    });
+    </script>
 {% endblock %}

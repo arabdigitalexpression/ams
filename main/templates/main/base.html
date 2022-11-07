@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% block content %}
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="list-unstyled alert alert-{{ message.tags }} alert-dismissible fade show"{% endif %}>
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+    {% block content %}{% endblock %}
 {% endblock %}
-</body>
-</html>

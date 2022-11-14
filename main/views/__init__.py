@@ -1,5 +1,5 @@
 from .api import (
-    UserViewSet, ProjectViewSet, LabelViewSet,
+    UserViewSet, ProjectViewSet,
     AccountTypeViewSet, AccountingEntryViewSet,
     EntryItemViewSet,
 )

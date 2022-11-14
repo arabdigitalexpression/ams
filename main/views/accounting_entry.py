@@ -45,7 +45,8 @@ def create_entry(request):
     debit_form = EntryDebitItemForm(request.POST or None)
     formset = EntryFormSet(
         request.POST or None,
-        debit_amount=request.POST.get('amount', None)
+        debit_amount=request.POST.get('debit_amount', None),
+        debit_account=request.POST.get('debit_account', None)
     )
 
     if form.is_valid() and debit_form.is_valid() and formset.is_valid():
@@ -54,26 +55,24 @@ def create_entry(request):
         ).order_by('created_at').last()
         entry = AccountingEntry(
             number=last_number.number + 1 if last_number else 1,
-            total=debit_form.cleaned_data['amount'],
+            total=debit_form.cleaned_data['debit_amount'],
             description=form.cleaned_data['description'],
             created_by=request.user
         )
         entry.save()
-        EntryItem.objects.create(
-            is_debit=True, amount=debit_form.cleaned_data['amount'],
-            type=debit_form.cleaned_data['type'], entry=entry
-        )
         for item in formset:
             EntryItem.objects.create(
-                amount=item.cleaned_data['amount'], is_debit=False,
-                type=item.cleaned_data['type'], entry=entry,
-                project=item.cleaned_data['project']
+                debit_amount=debit_form.cleaned_data['debit_amount'],
+                debit_account=debit_form.cleaned_data['debit_account'],
+                credit_amount=item.cleaned_data['credit_amount'],
+                credit_account=item.cleaned_data['credit_account'],
+                project=item.cleaned_data['project'], entry=entry,
             )
 
+        from main.utils import convert_nums_to_arabic
         messages.success(
-            # request, f"{entry.serial_number}تم حفظ القيد برقم "
             request,
-            f"{entry.serial_number.translate(str.maketrans('0123456789', '۰١٢٣٤٥٦٧٨٩'))}تم حفظ القيد برقم "
+            f"{convert_nums_to_arabic(entry.serial_number)}تم حفظ القيد برقم "
         )
         return HttpResponseRedirect(reverse('entry-list'))
 

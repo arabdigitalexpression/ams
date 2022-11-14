@@ -8,14 +8,14 @@ from main.models import AccountType
 @method_decorator(login_required, name='dispatch')
 class AccountTypeCreateView(CreateView):
     model = AccountType
-    fields = ['name']
+    fields = ['name', 'currency']
     template_name = 'main/account-type/create_form.html'
 
 
 @method_decorator(login_required, name='dispatch')
 class AccountTypeUpdateView(UpdateView):
     model = AccountType
-    fields = ['name']
+    fields = ['name', 'currency']
     template_name = 'main/account-type/update_form.html'
 
 

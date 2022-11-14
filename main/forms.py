@@ -1,9 +1,9 @@
 from django.forms import (
-    Form, ValidationError, Textarea,
+    Form, ValidationError, Textarea, TextInput,
     CharField, FloatField, ChoiceField, BaseInlineFormSet, ModelForm
 )
 from django.contrib.auth.forms import AuthenticationForm
-from .models import AccountingEntry, EntryItem, AccountType
+from .models import AccountingEntry, EntryItem, AccountType, Project
 
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
@@ -24,6 +24,7 @@ class EntryFormset(BaseInlineFormSet):
             **kwargs,
     ):
         self.debit_amount = kwargs.pop('debit_amount')
+        self.debit_account = kwargs.pop('debit_account')
         super(EntryFormset, self).__init__(
             data, files, instance, save_as_new, prefix, queryset, **kwargs
         )
@@ -32,18 +33,26 @@ class EntryFormset(BaseInlineFormSet):
         super(EntryFormset, self).clean()
 
         if not float(self.debit_amount) == sum([
-            form.cleaned_data['amount'] for form in self.forms
+            form.cleaned_data['credit_amount'] for form in self.forms
         ]):
             raise ValidationError("مبلغ المدين لا يساوي مبلغ الدائن.")
+        debit_account_id = int(self.debit_account)
+        if any([
+            form.cleaned_data['credit_account'].id == debit_account_id
+            for form in self.forms
+        ]):
+            raise ValidationError(
+                "استخدام حساب المدين في بنود الدائن غير مسموح"
+            )
 
 
 class EntryDebitItemForm(ModelForm):
     class Meta:
         model = EntryItem
-        fields = ['amount', 'type']
+        fields = ['debit_amount', 'debit_account']
         widgets = {
-            'amount': NumberInput(attrs={'class': 'form-control', 'min': '1'}),
-            'type': Select(attrs={'class': 'form-control select-box'})
+            'debit_amount': NumberInput(attrs={'class': 'form-control', 'min': '1'}),
+            'debit_account': Select(attrs={'class': 'form-control select-box'})
         }
 
 
@@ -56,12 +65,11 @@ class EntryForm(Form):
 EntryFormSet = inlineformset_factory(
     AccountingEntry, EntryItem, formset=EntryFormset, can_delete=False, extra=1,
     fields=(
-        'is_debit', 'amount', 'type', 'project'
+        'credit_amount', 'credit_account', 'project'
     ),
     widgets={
-        'is_debit': CheckboxInput(attrs={'class': 'd-none'}),
-        'amount': NumberInput(attrs={'class': 'form-control', 'min': '1'}),
-        'type': Select(attrs={'class': 'form-control select-box'}),
+        'credit_amount': NumberInput(attrs={'class': 'form-control', 'min': '1'}),
+        'credit_account': Select(attrs={'class': 'form-control select-box'}),
         'project': Select(attrs={'class': 'form-control select-box'}),
     }
 )
@@ -74,3 +82,12 @@ class LoginForm(AuthenticationForm):
         self.fields['password'].widget.attrs['class'] = "form-control"
 
 # TODO: make user creation form for admin
+
+
+class ProjectForm(ModelForm):
+    class Meta:
+        model = Project
+        fields = ["name"]
+        widgets = {
+            "name": TextInput(attrs={"class": "form-control", "placeholder": "أسم المشروع"}),
+        }

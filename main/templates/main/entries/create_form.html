@@ -37,8 +37,8 @@
         </thead>
         <tbody id="form-container">
             <tr>
-                <td>{{debit_form.type}}</td>
-                <td>{{debit_form.amount}}</td>
+                <td>{{debit_form.debit_account}}</td>
+                <td>{{debit_form.debit_amount}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -46,11 +46,10 @@
             {{ formset.management_form}}
             {% for form in formset %}
             <tr class="credit-form">
-                {{ form.is_debit }}
                 <td></td>
                 <td></td>
-                <td>{{ form.amount }}</td>
-                <td>{{ form.type }}</td>
+                <td>{{ form.credit_amount }}</td>
+                <td>{{ form.credit_account }}</td>
                 <td>{{ form.project }}</td>
             </tr>
             {% endfor %}

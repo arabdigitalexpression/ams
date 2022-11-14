@@ -1,0 +1,21 @@
+<h2>Create a project</h2>
+<form method="POST"
+      {% if is_update %}action="{% url 'project-update' project.id %}"{% endif %}
+> {% csrf_token %}
+    {{ form.as_div }}
+    <button type="submit">حفظ</button>
+</form>
+
+<h2>project list</h2>
+<ul>
+{% for proj in projects %}
+    <li>
+        <div>{{ proj.name }}</div>
+        <form method="POST"
+              action="{% url 'project-delete' proj.id %}"
+        > {% csrf_token %}
+            <button type="submit">حذف</button>
+        </form>
+    </li>
+{% endfor %}
+</ul>

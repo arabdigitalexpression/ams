@@ -5,9 +5,9 @@ from rest_framework import mixins
 from rest_framework import permissions  # authentication
 from django.contrib.auth.models import User
 
-from main.models import Project, Label, AccountType, AccountingEntry, EntryItem
+from main.models import Project, AccountType, AccountingEntry, EntryItem
 from main.serializers import (
-    UserSerializer, ProjectSerializer, LabelSerializer, AccountTypeSerializer,
+    UserSerializer, ProjectSerializer, AccountTypeSerializer,
     AccountingEntrySerializer, EntryItemSerializer,
 )
 
@@ -34,21 +34,6 @@ class ProjectViewSet(mixins.CreateModelMixin,
     """
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [permissions.IsAdminUser]
-
-
-class LabelViewSet(mixins.CreateModelMixin,
-                   mixins.ListModelMixin,
-                   mixins.RetrieveModelMixin,
-                   viewsets.GenericViewSet):
-    """
-    A viewset that provides `retrieve`, `create`, and `list` actions.
-
-    To use it, override the class and set the `.queryset` and
-    `.serializer_class` attributes.
-    """
-    queryset = Label.objects.all()
-    serializer_class = LabelSerializer
     permission_classes = [permissions.IsAdminUser]
 
 

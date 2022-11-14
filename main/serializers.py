@@ -4,7 +4,7 @@ from rest_framework.fields import FloatField
 from rest_framework.relations import HyperlinkedIdentityField, HyperlinkedRelatedField
 
 from .models import (
-    AccountingEntry, Label, Project, AccountType, EntryItem,
+    AccountingEntry, Project, AccountType, EntryItem,
 )
 
 
@@ -65,14 +65,6 @@ class AccountingEntrySerializer(serializers.ModelSerializer):
         for item in valid_items:
             EntryItem.objects.create(**item, entry=entry)
         return entry
-
-
-class LabelSerializer(serializers.ModelSerializer):
-    url = HyperlinkedIdentityField(view_name='label-detail', required=False)
-
-    class Meta:
-        model = Label
-        fields = ['url', 'id', 'name', 'created_at']
 
 
 class ProjectSerializer(serializers.ModelSerializer):

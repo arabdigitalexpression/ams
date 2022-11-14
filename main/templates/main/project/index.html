@@ -11,7 +11,8 @@
             > {% csrf_token %}
                 {{ form.name }}
                 {% if is_update %}
-                <button type="submit" class="btn btn-primary mb-0 me-2">تعديل اسم المشروع</button>
+                <button type="submit" class="btn btn-primary mb-0 me-2">تعديل</button>
+                <a href="{% url 'project-list' %}" type="submit" class="btn btn-outline-primary mb-0 me-2">إلغاء</a>
                 {% else %}
                 <button type="submit" class="btn btn-primary mb-0 me-2">أضف مشروع</button>
 

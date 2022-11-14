@@ -1,14 +1,14 @@
+from django.contrib.auth.forms import AuthenticationForm
 from django.forms import (
     Form, ValidationError, Textarea, TextInput,
-    CharField, FloatField, ChoiceField, BaseInlineFormSet, ModelForm
+    CharField, BaseInlineFormSet, ModelForm
 )
-from django.contrib.auth.forms import AuthenticationForm
-from .models import AccountingEntry, EntryItem, AccountType, Project
-
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
-    CheckboxInput, NumberInput, Select
+    NumberInput, Select
 )
+
+from .models import AccountingEntry, EntryItem, Project
 
 
 class EntryFormset(BaseInlineFormSet):
@@ -81,6 +81,7 @@ class LoginForm(AuthenticationForm):
         self.fields['username'].widget.attrs['class'] = "form-control"
         self.fields['password'].widget.attrs['class'] = "form-control"
 
+
 # TODO: make user creation form for admin
 
 
@@ -89,5 +90,5 @@ class ProjectForm(ModelForm):
         model = Project
         fields = ["name"]
         widgets = {
-            "name": TextInput(attrs={"class": "form-control", "placeholder": "أسم المشروع"}),
+            "name": TextInput(attrs={"class": "form-control w-25 border pe-1", "placeholder": "أسم المشروع"}),
         }

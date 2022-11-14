@@ -79,7 +79,9 @@ class LoginForm(AuthenticationForm):
     def __init__(self, request=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['class'] = "form-control"
+        self.fields['username'].widget.attrs['placeholder'] = "اسم المستخدم"
         self.fields['password'].widget.attrs['class'] = "form-control"
+        self.fields['password'].widget.attrs['placeholder'] = "كلمة المرور"
 
 
 # TODO: make user creation form for admin

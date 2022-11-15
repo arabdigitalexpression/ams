@@ -15,77 +15,82 @@
     <div class="collapse navbar-collapse px-0 w-auto max-height-vh-100" id="sidenav-collapse-main">
         <ul class="navbar-nav pe-1">
             <li class="nav-item">
-                <a class="nav-link " href="../pages/dashboard.html">
+                <a class="nav-link d-flex justify-content-between " href="../pages/dashboard.html">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">dashboard</i>
+                        <span class="nav-link-text me-2">لوحة القيادة</span>
                     </div>
-                    <span class="nav-link-text me-1">لوحة القيادة</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="../pages/tables.html">
+                <a class="nav-link d-flex justify-content-between" href="../pages/tables.html">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">table_view</i>
+                        <span class="nav-link-text me-2">قيود اليومية</span>
                     </div>
-                    <span class="nav-link-text me-1">قيود اليومية</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="../pages/billing.html">
+                <a class="nav-link d-flex justify-content-between" href="../pages/billing.html">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">receipt_long</i>
+                        <span class="nav-link-text me-2">حساب الأستاذ</span>
                     </div>
-                    <span class="nav-link-text me-1">حساب الأستاذ</span>
                 </a>
             </li>
             <hr>
             <li class="nav-item">
-                <a class="nav-link " href="../pages/sign-in.html">
+                <a class="nav-link d-flex justify-content-between" href="{% url 'account-type-list' %}">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">lan</i>
+                        <span class="nav-link-text me-2">دليل الحسابات</span>
                     </div>
-                    <span class="nav-link-text ms-1">دليل الحسابات</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="{% url 'project-list' %}">
+                <a class="nav-link d-flex justify-content-between" href="{% url 'project-list' %}">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">domain</i>
+                        <span class="nav-link-text me-2">المشاريع</span>
                     </div>
-                    <span class="nav-link-text me-1">المشاريع</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="../pages/sign-up.html">
+                <a class="nav-link d-flex justify-content-between" href="../pages/sign-up.html">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">document_scanner</i>
+                        <span class="nav-link-text me-2">التقارير</span>
                     </div>
-                    <span class="nav-link-text me-1">التقارير</span>
+                        <span class="badge bg-gradient-primary">قريباً</span>
+
                 </a>
             </li>
             <hr>
             <li class="nav-item">
-                <a class="nav-link " href="../pages/notifications.html">
+                <a class="nav-link d-flex justify-content-between" href="../pages/notifications.html">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">notifications</i>
+                        <span class="nav-link-text me-2">الإشعارات</span>
                     </div>
-                    <span class="nav-link-text me-1">الإشعارات</span>
+                        <span class="badge bg-gradient-primary">قريباً</span>
+
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="../pages/profile.html">
+                <a class="nav-link" href="../pages/profile.html">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">person</i>
+                        <span class="nav-link-text me-2">الحساب التعريفي</span>
                     </div>
-                    <span class="nav-link-text me-1">الحساب التعريفي</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="../pages/sign-in.html">
+                <a class="nav-link d-flex justify-content-between" href="../pages/sign-in.html">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">settings</i>
+                        <span class="nav-link-text me-2"> الإعدادات</span>
                     </div>
-                    <span class="nav-link-text ms-1"> الإعدادات</span>
+                        <span class="badge bg-gradient-primary">قريباً</span>
                 </a>
             </li>
         </ul>
@@ -93,9 +98,9 @@
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
         <div class="mx-3">
             <a class="btn bg-gradient-primary mt-4 w-100 d-flex align-items-center justify-content-center"
-               href="#" type="button">
+               href="{% url 'logout'%}" type="button">
                 <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
-                    <i class="material-icons-round opacity-10">login</i>
+                    <i class="material-icons-round opacity-10">logout</i>
                 </div>
                 <span class="nav-link-text ms-1">تسجيل الخروج</span>
             </a>

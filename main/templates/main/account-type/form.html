@@ -1,11 +1,79 @@
-<h2>Create an account</h2>
-<form method="POST"
-      {% if is_update %}
-      action="{% url 'account-type-update' account.id %}"
-      {% else %}
-      action="{% url 'account-type-create' %}"
-      {% endif %}
-> {% csrf_token %}
-    {{ form.as_div }}
-    <button type="submit">حفظ</button>
-</form>
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h5 class="text-white text-capitalize pe-3">
+                        {% if is_update %}
+                          تعديل حساب "{{ account.name }}"
+                          {% else %}
+                          إنشاء حساب
+                          {% endif %}
+                        </h5>
+                    </div>
+                </div>
+                <div class="card-body px-3 pb-2">
+                    <form method="POST"
+                          {% if is_update %}
+                          action="{% url 'account-type-update' account.id %}"
+                          {% else %}
+                          action="{% url 'account-type-create' %}"
+                          {% endif %}
+                        >
+                        {% csrf_token %}
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                {{ form.name }}
+                            </div>
+                            <div class="col-md-4">
+                                {{form.currency}}
+                            </div>
+                            <div class="col-md-4">
+                                {{form.balance_type}}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            {% if not is_update %}
+                                <div class="col-md-6">
+                                    {{form.level_type}}
+                                </div>
+                            {% endif %}
+                            {% if is_update %}
+                                {% if account.parent_account.id %}
+                                    <div class="col-md-6">
+                                        {{form.parent_account}}
+                                    </div>
+                                {% endif %}
+                            {% else %}
+                                    <div class="col-md-6">
+                                        {{form.parent_account}}
+                                    </div>
+                            {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary"> {% if is_update %}
+                            تعديل
+                          {% else %}
+                            إنشاء
+                          {% endif %}
+                        </button>
+                        {% if is_update %}
+                           <a
+                         {% if account.parent_account.id %}
+                             href="{% url 'account-type-detail' account.parent_account.id %}"
+                          {% else %}
+                             href="{% url 'account-type-list' %}"
+                          {% endif %}
+                            class="btn btn-outlined-primary"> إلغاء</a>
+                      {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

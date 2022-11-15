@@ -14,7 +14,6 @@ class Currency(models.Model):
 
 
 class AccountType(models.Model):
-
     class LevelEnum(models.TextChoices):
         MAIN = "M", "رئيسي"
         SUB = "S", "فرعي"
@@ -61,16 +60,16 @@ class AccountType(models.Model):
     @property
     def has_entry_items(self):
         return (
-            self.debit_items.count() > 0 or
-            self.credit_items.count() > 0
+                self.debit_items.count() > 0 or
+                self.credit_items.count() > 0
         )
 
     @property
     def is_not_empty(self):
         return not (
-            self.has_entry_items or
-            self.has_children or
-            self.is_default
+                self.has_entry_items or
+                self.has_children or
+                self.is_default
         )
 
 

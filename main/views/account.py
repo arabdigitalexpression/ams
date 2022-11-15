@@ -41,7 +41,7 @@ def account_create(request):
         )
         account.save()
         messages.success(
-            request, f'تم إنشاء حساب {account.level_type} "{account.name}".'
+            request, f'تم إنشاء حساب "{account.name}".'
         )
         return HttpResponseRedirect(reverse(
             "account-type-detail", args=[account.parent_account.id]
@@ -64,7 +64,7 @@ def account_update(request, pk):
             account.parent_account = form.cleaned_data["parent_account"]
             account.save()
             messages.success(
-                request, f'تم تعديل حساب {account.level_type} "{account.name}".'
+                request, f'تم تعديل حساب "{account.name}".'
             )
             return HttpResponseRedirect(reverse(
                 "account-type-detail", args=[account.parent_account.id]

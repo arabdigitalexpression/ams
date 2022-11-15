@@ -20,7 +20,7 @@ def project_index(request):
         if form.is_valid():
             project = Project(name=form.cleaned_data["name"])
             project.save()
-            messages.success(request, f"تم إنشاء مشروع {project.name}.")
+            messages.success(request, f"تم إنشاء مشروع \"{project.name}\".")
             return HttpResponseRedirect(reverse("project-list"))
         else:
             messages.error(request, "عذراً حدث خطأ ما … حاول مرة اخري")
@@ -43,7 +43,7 @@ def project_update(request, pk):
         if form.is_valid():
             project.name = form.cleaned_data["name"]
             project.save()
-            messages.success(request, f"تم تعديل مشروع {project.name}.")
+            messages.success(request, f"تم تعديل مشروع \"{project.name}\".")
             return HttpResponseRedirect(reverse("project-list"))
         else:
             messages.error(request, "عذراً حدث خطأ ما … حاول مرة اخري")
@@ -65,7 +65,7 @@ def delete_project(request, pk):
         project = get_object_or_404(Project, id=pk)
         if project.items.count() > 0:
             messages.warning(
-                request, "تحذير: هذا المشروع مرتبط بقيد يومية فلا يمكن مسحه"
+                request, f"تحذير: مشروع \"{project.name}\" مرتبط بقيد يومية فلا يمكن مسحه"
             )
             return HttpResponseRedirect(reverse("project-list"))
         proj_name = project.name
@@ -73,7 +73,7 @@ def delete_project(request, pk):
             project.delete()
         except (ProtectedError, RestrictedError, ValueError):
             messages.error(request, "عذراً حدث خطأ ما … حاول مرة اخري")
-        messages.success(request, f"تم حذف مشروع {proj_name}.")
+        messages.success(request, f"تم حذف مشروع \"{proj_name}\".")
         return HttpResponseRedirect(reverse("project-list"))
 
     return HttpResponseRedirect(reverse("project-list"))

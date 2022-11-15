@@ -106,19 +106,19 @@ class AccountCreateForm(ModelForm):
         ]
         widgets = {
             "name": TextInput(attrs={
-                "class": "form-control", "placeholder": "أسم الحساب"
+                "class": "form-control border pe-2", "placeholder": "أسم الحساب"
             }),
-            "level_type": RadioSelect(attrs={
-                "class": "form-control",
+            "level_type": Select(attrs={
+                "class": "form-control border pe-2",
             }),
-            "balance_type": RadioSelect(attrs={
-                "class": "form-control",
+            "balance_type": Select(attrs={
+                "class": "form-control border pe-2",
             }),
             "currency": Select(attrs={
-                "class": "form-control",
+                "class": "form-control border pe-2",
             }),
             "parent_account": Select(attrs={
-                "class": "form-control",
+                "class": "form-control border pe-2",
             }),
         }
 
@@ -132,15 +132,15 @@ class AccountUpdateForm(ModelForm):
         ]
         widgets = {
             "name": TextInput(attrs={
-                "class": "form-control", "placeholder": "أسم الحساب"
+                "class": "form-control border pe-2", "placeholder": "أسم الحساب"
             }),
-            "balance_type": RadioSelect(attrs={
-                "class": "form-control",
+            "balance_type": Select(attrs={
+                "class": "form-control border pe-2",
             }),
             "currency": Select(attrs={
-                "class": "form-control",
+                "class": "form-control border pe-2",
             }),
             "parent_account": Select(attrs={
-                "class": "form-control",
+                "class": "form-control border pe-2",
             }),
         }

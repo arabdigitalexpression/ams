@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.5.16-MariaDB, for Linux (x86_64)
+-- MariaDB dump 10.19  Distrib 10.9.3-MariaDB, for Linux (x86_64)
 --
--- Host: localhost    Database: AMS
+-- Host: localhost    Database: adef_ams
 -- ------------------------------------------------------
--- Server version	10.5.16-MariaDB
+-- Server version	10.9.3-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -91,7 +91,59 @@ CREATE TABLE `auth_permission` (
 
 LOCK TABLES `auth_permission` WRITE;
 /*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
-INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add user',4,'add_user'),(14,'Can change user',4,'change_user'),(15,'Can delete user',4,'delete_user'),(16,'Can view user',4,'view_user'),(17,'Can add content type',5,'add_contenttype'),(18,'Can change content type',5,'change_contenttype'),(19,'Can delete content type',5,'delete_contenttype'),(20,'Can view content type',5,'view_contenttype'),(21,'Can add session',6,'add_session'),(22,'Can change session',6,'change_session'),(23,'Can delete session',6,'delete_session'),(24,'Can view session',6,'view_session'),(25,'Can add accounting entry',7,'add_accountingentry'),(26,'Can change accounting entry',7,'change_accountingentry'),(27,'Can delete accounting entry',7,'delete_accountingentry'),(28,'Can view accounting entry',7,'view_accountingentry'),(29,'Can add account type',8,'add_accounttype'),(30,'Can change account type',8,'change_accounttype'),(31,'Can delete account type',8,'delete_accounttype'),(32,'Can view account type',8,'view_accounttype'),(33,'Can add label',9,'add_label'),(34,'Can change label',9,'change_label'),(35,'Can delete label',9,'delete_label'),(36,'Can view label',9,'view_label'),(37,'Can add project',10,'add_project'),(38,'Can change project',10,'change_project'),(39,'Can delete project',10,'delete_project'),(40,'Can view project',10,'view_project'),(41,'Can add entry item',11,'add_entryitem'),(42,'Can change entry item',11,'change_entryitem'),(43,'Can delete entry item',11,'delete_entryitem'),(44,'Can view entry item',11,'view_entryitem'),(45,'Can add category',12,'add_category'),(46,'Can change category',12,'change_category'),(47,'Can delete category',12,'delete_category'),(48,'Can view category',12,'view_category'),(49,'Can add currency',13,'add_currency'),(50,'Can change currency',13,'change_currency'),(51,'Can delete currency',13,'delete_currency'),(52,'Can view currency',13,'view_currency');
+INSERT INTO `auth_permission` VALUES
+(1,'Can add log entry',1,'add_logentry'),
+(2,'Can change log entry',1,'change_logentry'),
+(3,'Can delete log entry',1,'delete_logentry'),
+(4,'Can view log entry',1,'view_logentry'),
+(5,'Can add permission',2,'add_permission'),
+(6,'Can change permission',2,'change_permission'),
+(7,'Can delete permission',2,'delete_permission'),
+(8,'Can view permission',2,'view_permission'),
+(9,'Can add group',3,'add_group'),
+(10,'Can change group',3,'change_group'),
+(11,'Can delete group',3,'delete_group'),
+(12,'Can view group',3,'view_group'),
+(13,'Can add user',4,'add_user'),
+(14,'Can change user',4,'change_user'),
+(15,'Can delete user',4,'delete_user'),
+(16,'Can view user',4,'view_user'),
+(17,'Can add content type',5,'add_contenttype'),
+(18,'Can change content type',5,'change_contenttype'),
+(19,'Can delete content type',5,'delete_contenttype'),
+(20,'Can view content type',5,'view_contenttype'),
+(21,'Can add session',6,'add_session'),
+(22,'Can change session',6,'change_session'),
+(23,'Can delete session',6,'delete_session'),
+(24,'Can view session',6,'view_session'),
+(25,'Can add accounting entry',7,'add_accountingentry'),
+(26,'Can change accounting entry',7,'change_accountingentry'),
+(27,'Can delete accounting entry',7,'delete_accountingentry'),
+(28,'Can view accounting entry',7,'view_accountingentry'),
+(29,'Can add account type',8,'add_accounttype'),
+(30,'Can change account type',8,'change_accounttype'),
+(31,'Can delete account type',8,'delete_accounttype'),
+(32,'Can view account type',8,'view_accounttype'),
+(33,'Can add label',9,'add_label'),
+(34,'Can change label',9,'change_label'),
+(35,'Can delete label',9,'delete_label'),
+(36,'Can view label',9,'view_label'),
+(37,'Can add project',10,'add_project'),
+(38,'Can change project',10,'change_project'),
+(39,'Can delete project',10,'delete_project'),
+(40,'Can view project',10,'view_project'),
+(41,'Can add entry item',11,'add_entryitem'),
+(42,'Can change entry item',11,'change_entryitem'),
+(43,'Can delete entry item',11,'delete_entryitem'),
+(44,'Can view entry item',11,'view_entryitem'),
+(45,'Can add category',12,'add_category'),
+(46,'Can change category',12,'change_category'),
+(47,'Can delete category',12,'delete_category'),
+(48,'Can view category',12,'view_category'),
+(49,'Can add currency',13,'add_currency'),
+(50,'Can change currency',13,'change_currency'),
+(51,'Can delete currency',13,'delete_currency'),
+(52,'Can view currency',13,'view_currency');
 /*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +177,8 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$390000$RbsaSK04cHISbEpOPdBOCd$xbbAB//mw/Vcrdo35/0fG5e7mV2rNolLFBN2q5aMaoY=','2022-11-15 03:28:18.848047',1,'aramadan','','','askme557@gmail.com',1,1,'2022-09-10 21:30:57.168619');
+INSERT INTO `auth_user` VALUES
+(1,'pbkdf2_sha256$390000$RbsaSK04cHISbEpOPdBOCd$xbbAB//mw/Vcrdo35/0fG5e7mV2rNolLFBN2q5aMaoY=','2022-11-15 03:38:55.714664',1,'aramadan','','','askme557@gmail.com',1,1,'2022-09-10 21:30:57.168619');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +293,20 @@ CREATE TABLE `django_content_type` (
 
 LOCK TABLES `django_content_type` WRITE;
 /*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
-INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(5,'contenttypes','contenttype'),(7,'main','accountingentry'),(8,'main','accounttype'),(12,'main','category'),(13,'main','currency'),(11,'main','entryitem'),(9,'main','label'),(10,'main','project'),(6,'sessions','session');
+INSERT INTO `django_content_type` VALUES
+(1,'admin','logentry'),
+(3,'auth','group'),
+(2,'auth','permission'),
+(4,'auth','user'),
+(5,'contenttypes','contenttype'),
+(7,'main','accountingentry'),
+(8,'main','accounttype'),
+(12,'main','category'),
+(13,'main','currency'),
+(11,'main','entryitem'),
+(9,'main','label'),
+(10,'main','project'),
+(6,'sessions','session');
 /*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,7 +332,27 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2022-09-10 21:29:47.733304'),(2,'auth','0001_initial','2022-09-10 21:29:54.067062'),(3,'admin','0001_initial','2022-09-10 21:29:55.522180'),(4,'admin','0002_logentry_remove_auto_add','2022-09-10 21:29:55.561732'),(5,'admin','0003_logentry_add_action_flag_choices','2022-09-10 21:29:55.603942'),(6,'contenttypes','0002_remove_content_type_name','2022-09-10 21:29:56.157381'),(7,'auth','0002_alter_permission_name_max_length','2022-09-10 21:29:56.844864'),(8,'auth','0003_alter_user_email_max_length','2022-09-10 21:29:57.000606'),(9,'auth','0004_alter_user_username_opts','2022-09-10 21:29:57.069661'),(10,'auth','0005_alter_user_last_login_null','2022-09-10 21:29:57.477930'),(11,'auth','0006_require_contenttypes_0002','2022-09-10 21:29:57.523333'),(12,'auth','0007_alter_validators_add_error_messages','2022-09-10 21:29:57.592276'),(13,'auth','0008_alter_user_username_max_length','2022-09-10 21:29:57.699095'),(14,'auth','0009_alter_user_last_name_max_length','2022-09-10 21:29:57.845646'),(15,'auth','0010_alter_group_name_max_length','2022-09-10 21:29:57.989875'),(16,'auth','0011_update_proxy_permissions','2022-09-10 21:29:58.063661'),(17,'auth','0012_alter_user_first_name_max_length','2022-09-10 21:29:58.198745'),(18,'main','0001_initial','2022-09-10 21:30:03.111239'),(19,'sessions','0001_initial','2022-09-10 21:30:03.597105'),(21,'main','0002_currency_rename_amount_entryitem_credit_amount_and_more','2022-11-14 16:57:58.396243');
+INSERT INTO `django_migrations` VALUES
+(1,'contenttypes','0001_initial','2022-09-10 21:29:47.733304'),
+(2,'auth','0001_initial','2022-09-10 21:29:54.067062'),
+(3,'admin','0001_initial','2022-09-10 21:29:55.522180'),
+(4,'admin','0002_logentry_remove_auto_add','2022-09-10 21:29:55.561732'),
+(5,'admin','0003_logentry_add_action_flag_choices','2022-09-10 21:29:55.603942'),
+(6,'contenttypes','0002_remove_content_type_name','2022-09-10 21:29:56.157381'),
+(7,'auth','0002_alter_permission_name_max_length','2022-09-10 21:29:56.844864'),
+(8,'auth','0003_alter_user_email_max_length','2022-09-10 21:29:57.000606'),
+(9,'auth','0004_alter_user_username_opts','2022-09-10 21:29:57.069661'),
+(10,'auth','0005_alter_user_last_login_null','2022-09-10 21:29:57.477930'),
+(11,'auth','0006_require_contenttypes_0002','2022-09-10 21:29:57.523333'),
+(12,'auth','0007_alter_validators_add_error_messages','2022-09-10 21:29:57.592276'),
+(13,'auth','0008_alter_user_username_max_length','2022-09-10 21:29:57.699095'),
+(14,'auth','0009_alter_user_last_name_max_length','2022-09-10 21:29:57.845646'),
+(15,'auth','0010_alter_group_name_max_length','2022-09-10 21:29:57.989875'),
+(16,'auth','0011_update_proxy_permissions','2022-09-10 21:29:58.063661'),
+(17,'auth','0012_alter_user_first_name_max_length','2022-09-10 21:29:58.198745'),
+(18,'main','0001_initial','2022-09-10 21:30:03.111239'),
+(19,'sessions','0001_initial','2022-09-10 21:30:03.597105'),
+(21,'main','0002_currency_rename_amount_entryitem_credit_amount_and_more','2022-11-14 16:57:58.396243');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,7 +378,13 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('dj2weayz4o2vt803gqfgyo34kkuzfai1','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oujYY:Rh8QBeaxS2ooFRexbxHtptPvqtlOGjQh4rWvjkCGFcc','2022-11-29 00:12:02.514968'),('e2q6sienyrfpj0ojs5dmk5qm4agnhydh','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onhax:l0ce-fHs8SwGMq5TASI-NqqqYGhchKiY5zFb5lDLDe8','2022-11-09 14:41:27.871179'),('i49so012wqkgp9enoyn4t3jz9jw2ctb3','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oumcU:_tgu25RqKOKNSFh8wugA6IPeAkd7Mb67s2GKDpqzErY','2022-11-29 03:28:18.881833'),('nma2nm2aup547vz8vshu9s6nhdbb61zx','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onhBC:nsdQsfIzqlaCST97N92bAEZ3tRThqxjAdVUjJ3EUudw','2022-11-09 14:14:50.027735'),('rtmfhp4cshu5af4ba8x144c44muhkilt','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onh3z:IijDuHobUW1ZPlpQoA8GamYPfGeHV4rb3Wl361T8Rz0','2022-11-09 14:07:23.227025');
+INSERT INTO `django_session` VALUES
+('4z0tncsw8znvsteym3ho1xl21aussay4','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oumml:npvtC7BT3Oij3pne3w3uftkI-btbML0T58g_5snnv8c','2022-11-29 03:38:55.770620'),
+('dj2weayz4o2vt803gqfgyo34kkuzfai1','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oujYY:Rh8QBeaxS2ooFRexbxHtptPvqtlOGjQh4rWvjkCGFcc','2022-11-29 00:12:02.514968'),
+('e2q6sienyrfpj0ojs5dmk5qm4agnhydh','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onhax:l0ce-fHs8SwGMq5TASI-NqqqYGhchKiY5zFb5lDLDe8','2022-11-09 14:41:27.871179'),
+('i49so012wqkgp9enoyn4t3jz9jw2ctb3','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oumcU:_tgu25RqKOKNSFh8wugA6IPeAkd7Mb67s2GKDpqzErY','2022-11-29 03:28:18.881833'),
+('nma2nm2aup547vz8vshu9s6nhdbb61zx','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onhBC:nsdQsfIzqlaCST97N92bAEZ3tRThqxjAdVUjJ3EUudw','2022-11-09 14:14:50.027735'),
+('rtmfhp4cshu5af4ba8x144c44muhkilt','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onh3z:IijDuHobUW1ZPlpQoA8GamYPfGeHV4rb3Wl361T8Rz0','2022-11-09 14:07:23.227025');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,7 +442,7 @@ CREATE TABLE `main_accounttype` (
   KEY `main_accounttype_currency_id_7fc4127c_fk_main_currency_id` (`currency_id`),
   CONSTRAINT `main_accounttype_currency_id_7fc4127c_fk_main_currency_id` FOREIGN KEY (`currency_id`) REFERENCES `main_currency` (`id`),
   CONSTRAINT `main_accounttype_parent_account_id_f534a17e_fk_main_acco` FOREIGN KEY (`parent_account_id`) REFERENCES `main_accounttype` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_nopad_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_nopad_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -359,7 +451,15 @@ CREATE TABLE `main_accounttype` (
 
 LOCK TABLES `main_accounttype` WRITE;
 /*!40000 ALTER TABLE `main_accounttype` DISABLE KEYS */;
-INSERT INTO `main_accounttype` VALUES (4,'أصول','2022-11-15 00:23:52.140449','D',0,1,'M',NULL,1),(5,'التزامات','2022-11-15 00:23:54.866209','D',0,1,'M',NULL,1),(6,'حقوق الملكية','2022-11-15 00:23:57.228202','D',0,1,'M',NULL,1),(7,'الإرادات','2022-11-15 00:23:59.916535','C',0,1,'M',NULL,1),(8,'المصروفات','2022-11-15 00:24:03.484743','C',0,1,'M',NULL,1),(10,'أصول ثابتة','2022-11-15 02:52:42.795130','D',0,0,'M',4,1),(11,'أثاث','2022-11-15 01:27:44.539205','D',0,0,'S',10,1);
+INSERT INTO `main_accounttype` VALUES
+(4,'أصول','2022-11-15 00:23:52.140449','D',0,1,'M',NULL,1),
+(5,'التزامات','2022-11-15 00:23:54.866209','D',0,1,'M',NULL,1),
+(6,'حقوق الملكية','2022-11-15 00:23:57.228202','D',0,1,'M',NULL,1),
+(7,'الإرادات','2022-11-15 00:23:59.916535','C',0,1,'M',NULL,1),
+(8,'المصروفات','2022-11-15 00:24:03.484743','C',0,1,'M',NULL,1),
+(10,'أصول ثابتة','2022-11-15 02:52:42.795130','D',0,0,'M',4,1),
+(11,'أثاث','2022-11-15 05:56:49.287107','D',0,0,'S',10,2),
+(13,'التزامات طويلة الأجل','2022-11-15 05:57:43.011534','C',0,0,'M',5,1);
 /*!40000 ALTER TABLE `main_accounttype` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -389,7 +489,9 @@ CREATE TABLE `main_currency` (
 
 LOCK TABLES `main_currency` WRITE;
 /*!40000 ALTER TABLE `main_currency` DISABLE KEYS */;
-INSERT INTO `main_currency` VALUES (1,'جنيه مصري','E£','EGP',1,'2022-11-15 00:17:31.895969'),(2,'دولار أمريكي','$','USD',0,'2022-11-15 00:17:34.640840');
+INSERT INTO `main_currency` VALUES
+(1,'جنيه مصري','E£','EGP',1,'2022-11-15 00:17:31.895969'),
+(2,'دولار أمريكي','$','USD',0,'2022-11-15 00:17:34.640840');
 /*!40000 ALTER TABLE `main_currency` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -451,7 +553,8 @@ CREATE TABLE `main_project` (
 
 LOCK TABLES `main_project` WRITE;
 /*!40000 ALTER TABLE `main_project` DISABLE KEYS */;
-INSERT INTO `main_project` VALUES (1,'lmaooo84','2022-11-14 17:16:05.992571');
+INSERT INTO `main_project` VALUES
+(1,'lmaooo84','2022-11-14 17:16:05.992571');
 /*!40000 ALTER TABLE `main_project` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -464,4 +567,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-15  5:29:06
+-- Dump completed on 2022-11-15  8:20:11

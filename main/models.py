@@ -9,6 +9,9 @@ class Currency(models.Model):
     is_primary = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
 
 class AccountType(models.Model):
 
@@ -46,6 +49,21 @@ class AccountType(models.Model):
     def get_absolute_url(self):
         from django.urls import reverse
         return reverse('account-type-detail', kwargs={'pk': self.pk})
+
+    @property
+    def children(self):
+        return self.child_account.all()
+
+    @property
+    def has_children(self):
+        return self.child_account.exists()
+
+    @property
+    def has_entry_items(self):
+        return (
+            self.debit_items.count() > 0 or
+            self.credit_items.count() > 0
+        )
 
 
 class Project(models.Model):

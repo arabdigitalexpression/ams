@@ -13,6 +13,7 @@ from .views import (
     AccountingEntryDetailView,
     # setupView
 )
+from .views.account import account_create, account_list, account_detail, account_update, delete_account
 from .views.accounting_entry import create_entry
 from .views.project import project_index, project_update, delete_project
 
@@ -42,6 +43,7 @@ urlpatterns += [
     # path('setup/', setupView, name="setup"),
 
     path('accounts/login/', auth_views.LoginView.as_view(form_class=LoginForm), name='login'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     path('projects/', project_index, name='project-list'),
     # path('projects/create/', ProjectCreateView.as_view(), name='project-create'),
@@ -49,10 +51,11 @@ urlpatterns += [
     path('projects/<int:pk>/update/', project_update, name='project-update'),
     path('projects/<int:pk>/delete/', delete_project, name='project-delete'),
 
-    path('account-types/', AccountTypeListView.as_view(), name='account-type-list'),
-    path('account-types/create/', AccountTypeCreateView.as_view(), name='account-type-create'),
-    path('account-types/<int:pk>/', AccountTypeDetailView.as_view(), name='account-type-detail'),
-    path('account-types/<int:pk>/update/', AccountTypeUpdateView.as_view(), name='account-type-update'),
+    path('account-types/', account_list, name='account-type-list'),
+    path('account-types/create/', account_create, name='account-type-create'),
+    path('account-types/<int:pk>/', account_detail, name='account-type-detail'),
+    path('account-types/<int:pk>/update/', account_update, name='account-type-update'),
+    path('account-types/<int:pk>/delete/', delete_account, name='account-type-delete'),
 
     path('entries/', AccountingEntryListView.as_view(), name='entry-list'),
     path('entries/create/', create_entry, name='entry-create'),

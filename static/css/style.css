@@ -1,6 +1,24 @@
     body{
-        font-family:'Tajawal Regular', Roboto, Arial;
+        font-family: 'Tajawal Regular', Roboto, Arial;
+        direction: rtl;
     }
     *{
         font-family:'Tajawal Regular', Roboto, Arial;
+        direction: rtl;
+    }
+   .navbar-vertical::-webkit-scrollbar {
+        width: 7px;
+    }
+    /* Track */
+    .navbar-vertical::-webkit-scrollbar-track {
+        background: rgba(200,200,200,0.1);
+    }
+    /* Handle */
+    .navbar-vertical::-webkit-scrollbar-thumb {
+        background: rgba(200,200,200,0.2);
+        border-radius: 5px;
+    }
+    /* Handle on hover */
+    .navbar-vertical::-webkit-scrollbar-thumb:hover {
+        background: rgba(200,200,200,0.4);
     }

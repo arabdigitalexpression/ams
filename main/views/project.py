@@ -20,7 +20,7 @@ def project_index(request):
         if form.is_valid():
             project = Project(name=form.cleaned_data["name"])
             project.save()
-            messages.success(request, "تم إنشاء مشروع جديد.")
+            messages.success(request, f"تم إنشاء مشروع {project.name}.")
             return HttpResponseRedirect(reverse("project-list"))
         else:
             messages.error(request, "عذراً حدث خطأ ما … حاول مرة اخري")

@@ -1,0 +1,17 @@
+<a href="{% url 'account-type-create' %}">إنشاء حساب جديد</a>
+
+
+<ul>
+{% for account in accounts %}
+    <li>
+        <div>{{ account.name }}</div>
+
+        <a href="{% url 'account-type-update' account.id %}">تعديل</a>
+        {% if not account.has_children %}
+            <form method="POST" action="{% url 'account-type-delete' account.id %}"> {% csrf_token %}
+                <button type="submit">حذف</button>
+            </form>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>

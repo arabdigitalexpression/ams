@@ -1,0 +1,11 @@
+<h2>Create an account</h2>
+<form method="POST"
+      {% if is_update %}
+      action="{% url 'account-type-update' account.id %}"
+      {% else %}
+      action="{% url 'account-type-create' %}"
+      {% endif %}
+> {% csrf_token %}
+    {{ form.as_div }}
+    <button type="submit">حفظ</button>
+</form>

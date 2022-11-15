@@ -7,7 +7,7 @@ from .models import AccountingEntry, EntryItem, AccountType, Project
 
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
-    CheckboxInput, NumberInput, Select
+    CheckboxInput, NumberInput, Select, RadioSelect
 )
 
 
@@ -90,4 +90,53 @@ class ProjectForm(ModelForm):
         fields = ["name"]
         widgets = {
             "name": TextInput(attrs={"class": "form-control", "placeholder": "أسم المشروع"}),
+        }
+
+
+class AccountCreateForm(ModelForm):
+    class Meta:
+        model = AccountType
+        fields = [
+            "name", "level_type", "balance_type",
+            "currency", "parent_account"
+        ]
+        widgets = {
+            "name": TextInput(attrs={
+                "class": "form-control", "placeholder": "أسم الحساب"
+            }),
+            "level_type": RadioSelect(attrs={
+                "class": "form-control",
+            }),
+            "balance_type": RadioSelect(attrs={
+                "class": "form-control",
+            }),
+            "currency": Select(attrs={
+                "class": "form-control",
+            }),
+            "parent_account": Select(attrs={
+                "class": "form-control",
+            }),
+        }
+
+
+class AccountUpdateForm(ModelForm):
+    class Meta:
+        model = AccountType
+        fields = [
+            "name", "balance_type",
+            "currency", "parent_account"
+        ]
+        widgets = {
+            "name": TextInput(attrs={
+                "class": "form-control", "placeholder": "أسم الحساب"
+            }),
+            "balance_type": RadioSelect(attrs={
+                "class": "form-control",
+            }),
+            "currency": Select(attrs={
+                "class": "form-control",
+            }),
+            "parent_account": Select(attrs={
+                "class": "form-control",
+            }),
         }

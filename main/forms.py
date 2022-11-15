@@ -122,6 +122,13 @@ class AccountCreateForm(ModelForm):
             }),
         }
 
+    def clean(self):
+        super(AccountCreateForm, self).clean()
+
+        level = self.cleaned_data['parent_account'].level_type
+        if AccountType.LevelEnum(level).SUB == level:
+            raise ValidationError("برجاء عدم اختيار حساب تحت حساب فرعي اخر.")
+
 
 class AccountUpdateForm(ModelForm):
     class Meta:
@@ -144,3 +151,11 @@ class AccountUpdateForm(ModelForm):
                 "class": "form-control border pe-2",
             }),
         }
+
+
+    def clean(self):
+        super(AccountUpdateForm, self).clean()
+
+        level = self.cleaned_data['parent_account'].level_type
+        if AccountType.LevelEnum(level).SUB == level:
+            raise ValidationError("برجاء عدم اختيار حساب تحت حساب فرعي اخر.")

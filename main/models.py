@@ -65,6 +65,14 @@ class AccountType(models.Model):
             self.credit_items.count() > 0
         )
 
+    @property
+    def is_not_empty(self):
+        return not (
+            self.has_entry_items or
+            self.has_children or
+            self.is_default
+        )
+
 
 class Project(models.Model):
     name = models.CharField(max_length=100)

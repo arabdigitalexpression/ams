@@ -84,12 +84,7 @@ def account_update(request, pk):
 def delete_account(request, pk):
     if request.POST:
         account = get_object_or_404(AccountType, id=pk)
-        not_empty = (
-                account.has_entry_items or
-                account.has_children or
-                account.is_default
-        )
-        if not_empty:
+        if account.is_not_empty:
             messages.warning(
                 request, "تحذير: هذا الحساب مرتبط بقيد يومية فلا يمكن مسحه"
             )

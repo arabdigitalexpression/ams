@@ -125,7 +125,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$390000$RbsaSK04cHISbEpOPdBOCd$xbbAB//mw/Vcrdo35/0fG5e7mV2rNolLFBN2q5aMaoY=','2022-11-14 16:59:56.475636',1,'aramadan','','','askme557@gmail.com',1,1,'2022-09-10 21:30:57.168619');
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$390000$RbsaSK04cHISbEpOPdBOCd$xbbAB//mw/Vcrdo35/0fG5e7mV2rNolLFBN2q5aMaoY=','2022-11-15 03:28:18.848047',1,'aramadan','','','askme557@gmail.com',1,1,'2022-09-10 21:30:57.168619');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,7 +292,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('e2q6sienyrfpj0ojs5dmk5qm4agnhydh','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onhax:l0ce-fHs8SwGMq5TASI-NqqqYGhchKiY5zFb5lDLDe8','2022-11-09 14:41:27.871179'),('i8mygtb2mb6r79i7msg84lcanpzgh07k','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oucoO:t0VnOmtYftw7LjLrZOOzEp9r16_19zTcSYMkgnqKvXs','2022-11-28 16:59:56.484288'),('nma2nm2aup547vz8vshu9s6nhdbb61zx','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onhBC:nsdQsfIzqlaCST97N92bAEZ3tRThqxjAdVUjJ3EUudw','2022-11-09 14:14:50.027735'),('rtmfhp4cshu5af4ba8x144c44muhkilt','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onh3z:IijDuHobUW1ZPlpQoA8GamYPfGeHV4rb3Wl361T8Rz0','2022-11-09 14:07:23.227025');
+INSERT INTO `django_session` VALUES ('dj2weayz4o2vt803gqfgyo34kkuzfai1','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oujYY:Rh8QBeaxS2ooFRexbxHtptPvqtlOGjQh4rWvjkCGFcc','2022-11-29 00:12:02.514968'),('e2q6sienyrfpj0ojs5dmk5qm4agnhydh','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onhax:l0ce-fHs8SwGMq5TASI-NqqqYGhchKiY5zFb5lDLDe8','2022-11-09 14:41:27.871179'),('i49so012wqkgp9enoyn4t3jz9jw2ctb3','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oumcU:_tgu25RqKOKNSFh8wugA6IPeAkd7Mb67s2GKDpqzErY','2022-11-29 03:28:18.881833'),('nma2nm2aup547vz8vshu9s6nhdbb61zx','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onhBC:nsdQsfIzqlaCST97N92bAEZ3tRThqxjAdVUjJ3EUudw','2022-11-09 14:14:50.027735'),('rtmfhp4cshu5af4ba8x144c44muhkilt','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onh3z:IijDuHobUW1ZPlpQoA8GamYPfGeHV4rb3Wl361T8Rz0','2022-11-09 14:07:23.227025');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,7 +350,7 @@ CREATE TABLE `main_accounttype` (
   KEY `main_accounttype_currency_id_7fc4127c_fk_main_currency_id` (`currency_id`),
   CONSTRAINT `main_accounttype_currency_id_7fc4127c_fk_main_currency_id` FOREIGN KEY (`currency_id`) REFERENCES `main_currency` (`id`),
   CONSTRAINT `main_accounttype_parent_account_id_f534a17e_fk_main_acco` FOREIGN KEY (`parent_account_id`) REFERENCES `main_accounttype` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_nopad_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_nopad_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -359,6 +359,7 @@ CREATE TABLE `main_accounttype` (
 
 LOCK TABLES `main_accounttype` WRITE;
 /*!40000 ALTER TABLE `main_accounttype` DISABLE KEYS */;
+INSERT INTO `main_accounttype` VALUES (4,'أصول','2022-11-15 00:23:52.140449','D',0,1,'M',NULL,1),(5,'التزامات','2022-11-15 00:23:54.866209','D',0,1,'M',NULL,1),(6,'حقوق الملكية','2022-11-15 00:23:57.228202','D',0,1,'M',NULL,1),(7,'الإرادات','2022-11-15 00:23:59.916535','C',0,1,'M',NULL,1),(8,'المصروفات','2022-11-15 00:24:03.484743','C',0,1,'M',NULL,1),(10,'أصول ثابتة','2022-11-15 02:52:42.795130','D',0,0,'M',4,1),(11,'أثاث','2022-11-15 01:27:44.539205','D',0,0,'S',10,1);
 /*!40000 ALTER TABLE `main_accounttype` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -379,7 +380,7 @@ CREATE TABLE `main_currency` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `symbol` (`symbol`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_nopad_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_nopad_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -388,6 +389,7 @@ CREATE TABLE `main_currency` (
 
 LOCK TABLES `main_currency` WRITE;
 /*!40000 ALTER TABLE `main_currency` DISABLE KEYS */;
+INSERT INTO `main_currency` VALUES (1,'جنيه مصري','E£','EGP',1,'2022-11-15 00:17:31.895969'),(2,'دولار أمريكي','$','USD',0,'2022-11-15 00:17:34.640840');
 /*!40000 ALTER TABLE `main_currency` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -449,7 +451,7 @@ CREATE TABLE `main_project` (
 
 LOCK TABLES `main_project` WRITE;
 /*!40000 ALTER TABLE `main_project` DISABLE KEYS */;
-INSERT INTO `main_project` VALUES (1,'lmaooo84','2022-11-14 17:16:05.992571'),(2,'test','2022-10-18 15:33:13.802428'),(3,'test lol','2022-10-18 15:36:42.437191'),(4,'lol','2022-11-14 17:09:19.946372');
+INSERT INTO `main_project` VALUES (1,'lmaooo84','2022-11-14 17:16:05.992571');
 /*!40000 ALTER TABLE `main_project` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -462,4 +464,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-14 19:46:33
+-- Dump completed on 2022-11-15  5:29:06

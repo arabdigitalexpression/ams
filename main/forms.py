@@ -1,14 +1,14 @@
+from django.contrib.auth.forms import AuthenticationForm
 from django.forms import (
     Form, ValidationError, Textarea, TextInput,
-    CharField, FloatField, ChoiceField, BaseInlineFormSet, ModelForm
+    CharField, BaseInlineFormSet, ModelForm
 )
-from django.contrib.auth.forms import AuthenticationForm
-from .models import AccountingEntry, EntryItem, AccountType, Project
-
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
-    CheckboxInput, NumberInput, Select, RadioSelect
+    NumberInput, Select
 )
+
+from .models import AccountingEntry, EntryItem, Project
 
 
 class EntryFormset(BaseInlineFormSet):
@@ -90,53 +90,4 @@ class ProjectForm(ModelForm):
         fields = ["name"]
         widgets = {
             "name": TextInput(attrs={"class": "form-control", "placeholder": "أسم المشروع"}),
-        }
-
-
-class AccountCreateForm(ModelForm):
-    class Meta:
-        model = AccountType
-        fields = [
-            "name", "level_type", "balance_type",
-            "currency", "parent_account"
-        ]
-        widgets = {
-            "name": TextInput(attrs={
-                "class": "form-control", "placeholder": "أسم الحساب"
-            }),
-            "level_type": RadioSelect(attrs={
-                "class": "form-control",
-            }),
-            "balance_type": RadioSelect(attrs={
-                "class": "form-control",
-            }),
-            "currency": Select(attrs={
-                "class": "form-control",
-            }),
-            "parent_account": Select(attrs={
-                "class": "form-control",
-            }),
-        }
-
-
-class AccountUpdateForm(ModelForm):
-    class Meta:
-        model = AccountType
-        fields = [
-            "name", "balance_type",
-            "currency", "parent_account"
-        ]
-        widgets = {
-            "name": TextInput(attrs={
-                "class": "form-control", "placeholder": "أسم الحساب"
-            }),
-            "balance_type": RadioSelect(attrs={
-                "class": "form-control",
-            }),
-            "currency": Select(attrs={
-                "class": "form-control",
-            }),
-            "parent_account": Select(attrs={
-                "class": "form-control",
-            }),
         }

@@ -79,7 +79,10 @@ class LoginForm(AuthenticationForm):
     def __init__(self, request=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['class'] = "form-control"
+        self.fields['username'].widget.attrs['placeholder'] = "اسم المستخدم"
         self.fields['password'].widget.attrs['class'] = "form-control"
+        self.fields['password'].widget.attrs['placeholder'] = "كلمة المرور"
+
 
 # TODO: make user creation form for admin
 
@@ -89,7 +92,7 @@ class ProjectForm(ModelForm):
         model = Project
         fields = ["name"]
         widgets = {
-            "name": TextInput(attrs={"class": "form-control", "placeholder": "أسم المشروع"}),
+            "name": TextInput(attrs={"class": "form-control w-25 border pe-2", "placeholder": "أسم المشروع"}),
         }
 
 
@@ -103,19 +106,19 @@ class AccountCreateForm(ModelForm):
         ]
         widgets = {
             "name": TextInput(attrs={
-                "class": "form-control", "placeholder": "أسم الحساب"
+                "class": "form-control border pe-2", "placeholder": "أسم الحساب"
             }),
-            "level_type": RadioSelect(attrs={
-                "class": "form-control",
+            "level_type": Select(attrs={
+                "class": "form-control border pe-2",
             }),
-            "balance_type": RadioSelect(attrs={
-                "class": "form-control",
+            "balance_type": Select(attrs={
+                "class": "form-control border pe-2",
             }),
             "currency": Select(attrs={
-                "class": "form-control",
+                "class": "form-control border pe-2",
             }),
             "parent_account": Select(attrs={
-                "class": "form-control",
+                "class": "form-control border pe-2",
             }),
         }
 
@@ -136,16 +139,16 @@ class AccountUpdateForm(ModelForm):
         ]
         widgets = {
             "name": TextInput(attrs={
-                "class": "form-control", "placeholder": "أسم الحساب"
+                "class": "form-control border pe-2", "placeholder": "أسم الحساب"
             }),
-            "balance_type": RadioSelect(attrs={
-                "class": "form-control",
+            "balance_type": Select(attrs={
+                "class": "form-control border pe-2",
             }),
             "currency": Select(attrs={
-                "class": "form-control",
+                "class": "form-control border pe-2",
             }),
             "parent_account": Select(attrs={
-                "class": "form-control",
+                "class": "form-control border pe-2",
             }),
         }
 

@@ -7,7 +7,7 @@
         <div>{{ account.name }}</div>
 
         <a href="{% url 'account-type-update' account.id %}">تعديل</a>
-        {% if not account.has_children %}
+        {% if account.is_not_empty %}
             <form method="POST" action="{% url 'account-type-delete' account.id %}"> {% csrf_token %}
                 <button type="submit">حذف</button>
             </form>

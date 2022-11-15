@@ -92,5 +92,5 @@ class ProjectForm(ModelForm):
         model = Project
         fields = ["name"]
         widgets = {
-            "name": TextInput(attrs={"class": "form-control w-25 border pe-1", "placeholder": "أسم المشروع"}),
+            "name": TextInput(attrs={"class": "form-control w-25 border pe-2", "placeholder": "أسم المشروع"}),
         }

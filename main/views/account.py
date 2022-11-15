@@ -9,7 +9,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
 from main.forms import AccountCreateForm, AccountUpdateForm
-from main.models import AccountType, Currency
+from main.models import AccountType
 
 
 @login_required(login_url='/accounts/login/')
@@ -66,9 +66,13 @@ def account_update(request, pk):
             messages.success(
                 request, f'تم تعديل حساب "{account.name}".'
             )
-            return HttpResponseRedirect(reverse(
-                "account-type-detail", args=[account.parent_account.id]
-            ))
+            if account.parent_account is None:
+                return HttpResponseRedirect(reverse(
+                    "account-type-list"))
+            else:
+                return HttpResponseRedirect(reverse(
+                    "account-type-detail", args=[account.parent_account.id]
+                ))
     else:
         form = AccountUpdateForm(initial={
             "name": account.name, "balance_type": account.balance_type,

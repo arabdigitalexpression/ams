@@ -1,11 +1,12 @@
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 from django.forms import (
     Form, ValidationError, Textarea, TextInput,
     CharField, BaseInlineFormSet, ModelForm
 )
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
-    NumberInput, Select, RadioSelect
+    NumberInput, Select, RadioSelect, EmailInput
 )
 
 from .models import AccountingEntry, EntryItem, Project, AccountType
@@ -159,3 +160,33 @@ class AccountUpdateForm(ModelForm):
         level = self.cleaned_data['parent_account'].level_type
         if AccountType.LevelEnum(level).SUB == level:
             raise ValidationError("برجاء عدم اختيار حساب تحت حساب فرعي اخر.")
+
+
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            "first_name", "last_name", "email",
+            "username", "group",
+        ]
+        widgets = {
+            "first_name": TextInput(attrs={
+                "class": "form-control border pe-2",
+                "placeholder": "الأسم الأول"
+            }),
+            "last_name": TextInput(attrs={
+                "class": "form-control border pe-2",
+                "placeholder": "الأسم الأخير"
+            }),
+            "email": EmailInput(attrs={
+                "class": "form-control border pe-2",
+                "placeholder": "البريد الإلكتروني"
+            }),
+            "username": TextInput(attrs={
+                "class": "form-control border pe-2",
+                "placeholder": "أسم المستخدم"
+            }),
+            "group": Select(attrs={
+                "class": "form-control border pe-2",
+            }),
+        }

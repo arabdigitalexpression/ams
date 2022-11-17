@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <form method="POST"
+                  {% if is_update %}action="{% url 'project-update' project.id %}" {% endif %}
+                  class="d-flex align-items-center mb-5"
+            > {% csrf_token %}
+                {{ form.as_div }}
+                {% if is_update %}
+                <button type="submit" class="btn btn-primary mb-0 me-2">تعديل</button>
+                <a href="{% url 'project-list' %}" type="submit" class="btn btn-outline-primary mb-0 me-2">إلغاء</a>
+                {% else %}
+                <button type="submit" class="btn btn-primary mb-0 me-2">أضف مستخدم</button>
+
+                {% endif %}
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

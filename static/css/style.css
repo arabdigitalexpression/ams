@@ -6,6 +6,23 @@
         font-family:'Tajawal Regular', Roboto, Arial;
         direction: rtl;
     }
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: rgba(200,200,200,0.7);
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: rgba(233,30,99,0.9);
+        border-radius: 5px;
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(233,30,99,0.6);
+
+    }
    .navbar-vertical::-webkit-scrollbar {
         width: 7px;
     }

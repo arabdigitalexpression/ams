@@ -57,7 +57,6 @@ def account_update(request, pk):
     if request.method == "POST":
         form = AccountUpdateForm(request.POST)
         if form.is_valid():
-
             account.name = form.cleaned_data["name"]
             account.balance_type = form.cleaned_data["balance_type"]
             account.currency = form.cleaned_data["currency"]
@@ -67,8 +66,7 @@ def account_update(request, pk):
                 request, f'تم تعديل حساب "{account.name}".'
             )
             if account.parent_account is None:
-                return HttpResponseRedirect(reverse(
-                    "account-type-list"))
+                return HttpResponseRedirect(reverse("account-type-list"))
             else:
                 return HttpResponseRedirect(reverse(
                     "account-type-detail", args=[account.parent_account.id]
@@ -108,7 +106,7 @@ def delete_account(request, pk):
 class AccountTypeCreateView(CreateView):
     model = AccountType
     fields = ['name', 'currency']
-    template_name = 'main/account-type/create_form.html'
+    template_name = 'main/account-type/form.html'
 
 
 @method_decorator(login_required, name='dispatch')

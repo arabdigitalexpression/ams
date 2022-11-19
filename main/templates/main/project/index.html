@@ -69,6 +69,15 @@
                                     </form>
                                 </td>
                             </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6">
+                                    <p class="text-warning lead mb-0 text-center">
+                                        عذرا لا يوجد بيانات ... إبدأ بإضافة مشاريع
+                                    </p>
+
+                                </td>
+                            </tr>
                             {% endfor %}
 
                             </tbody>

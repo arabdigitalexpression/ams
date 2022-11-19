@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import permission_required
 from django.db.models import ProtectedError, RestrictedError
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render

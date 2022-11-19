@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.utils.timezone import now
@@ -16,7 +16,7 @@ from main.models import AccountingEntry, EntryItem
 class AccountingEntryCreateView(CreateView):
     model = AccountingEntry
     fields = ["description"]
-    template_name = 'main/entries/create_form.html'
+    template_name = 'main/entries/form.html'
 
     def get_context_data(self, **kwargs):
         # we need to overwrite get_context_data
@@ -72,11 +72,11 @@ def create_entry(request):
         from main.utils import convert_nums_to_arabic
         messages.success(
             request,
-            f"{convert_nums_to_arabic(entry.serial_number)}تم حفظ القيد برقم "
+            f"تم حفظ القيد برقم {convert_nums_to_arabic(entry.serial_number)}"
         )
         return HttpResponseRedirect(reverse('entry-list'))
 
-    return render(request, 'main/entries/create_form.html', {
+    return render(request, 'main/entries/form.html', {
         'formset': formset, 'form': form, 'debit_form': debit_form,
     })
 
@@ -85,7 +85,7 @@ def create_entry(request):
 class AccountingEntryListView(ListView):
     model = AccountingEntry
     paginate_by = 20
-    template_name = 'main/entries/list.html'
+    template_name = 'main/entries/index.html'
 
 
 @method_decorator(login_required, name='dispatch')

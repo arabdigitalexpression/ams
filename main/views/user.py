@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import permission_required
 from django.db.models import ProtectedError, RestrictedError
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
@@ -22,7 +22,7 @@ def user_create(request):
             first_name=form.cleaned_data["first_name"],
             last_name=form.cleaned_data["last_name"],
             username=form.cleaned_data["username"],
-            group=form.cleaned_data["group"],
+            groups=form.cleaned_data["groups"],
             email=form.cleaned_data["email"],
         )
         # TODO: generate random password then return it to success templates
@@ -51,7 +51,7 @@ def user_update(request, pk):
             user.last_name = form.cleaned_data["last_name"]
             user.email = form.cleaned_data["email"]
             user.username = form.cleaned_data["username"]
-            user.group = form.cleaned_data["group"]
+            user.groups = form.cleaned_data["groups"]
             user.save()
             messages.success(
                 request, f'تم تعديل المستخدم "{user.get_full_name()}".'
@@ -61,7 +61,7 @@ def user_update(request, pk):
         form = UserForm(initial={
             "first_name": user.first_name, "last_name": user.last_name,
             "email": user.email, "username": user.username,
-            "group": user.group,
+            "groups": user.groups,
         })
     return render(request, 'main/user/form.html', {
         "user": user, "form": form, "is_update": True

@@ -6,7 +6,7 @@ from django.forms import (
 )
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
-    NumberInput, Select, RadioSelect, EmailInput
+    NumberInput, Select, EmailInput
 )
 
 from .models import AccountingEntry, EntryItem, Project, AccountType
@@ -52,14 +52,14 @@ class EntryDebitItemForm(ModelForm):
         model = EntryItem
         fields = ['debit_amount', 'debit_account']
         widgets = {
-            'debit_amount': NumberInput(attrs={'class': 'form-control', 'min': '1'}),
-            'debit_account': Select(attrs={'class': 'form-control select-box'})
+            'debit_amount': NumberInput(attrs={'class': 'form-control border', 'min': '1'}),
+            'debit_account': Select(attrs={'class': 'form-select border'})
         }
 
 
 class EntryForm(Form):
     description = CharField(widget=Textarea(attrs={
-        'class': 'form-control', 'placeholder': 'الوصف'
+        'class': 'form-control border w-100 pe-2', 'placeholder': 'البيان'
     }))
 
 
@@ -69,9 +69,9 @@ EntryFormSet = inlineformset_factory(
         'credit_amount', 'credit_account', 'project'
     ),
     widgets={
-        'credit_amount': NumberInput(attrs={'class': 'form-control', 'min': '1'}),
-        'credit_account': Select(attrs={'class': 'form-control select-box'}),
-        'project': Select(attrs={'class': 'form-control select-box'}),
+        'credit_amount': NumberInput(attrs={'class': 'form-control border', 'min': '1'}),
+        'credit_account': Select(attrs={'class': 'form-select border'}),
+        'project': Select(attrs={'class': 'form-select border'}),
     }
 )
 
@@ -95,7 +95,6 @@ class ProjectForm(ModelForm):
         widgets = {
             "name": TextInput(attrs={"class": "form-control w-25 border pe-2", "placeholder": "أسم المشروع"}),
         }
-
 
 
 class AccountCreateForm(ModelForm):
@@ -153,7 +152,6 @@ class AccountUpdateForm(ModelForm):
             }),
         }
 
-
     def clean(self):
         super(AccountUpdateForm, self).clean()
 
@@ -167,7 +165,7 @@ class UserForm(ModelForm):
         model = User
         fields = [
             "first_name", "last_name", "email",
-            "username", "group",
+            "username", "groups",
         ]
         widgets = {
             "first_name": TextInput(attrs={
@@ -186,7 +184,7 @@ class UserForm(ModelForm):
                 "class": "form-control border pe-2",
                 "placeholder": "أسم المستخدم"
             }),
-            "group": Select(attrs={
+            "groups": Select(attrs={
                 "class": "form-control border pe-2",
             }),
         }

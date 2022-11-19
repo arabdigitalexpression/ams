@@ -1,8 +1,9 @@
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.forms import (
     Form, ValidationError, Textarea, TextInput,
-    CharField, BaseInlineFormSet, ModelForm
+    CharField, BaseInlineFormSet, ModelForm,
+    ChoiceField
 )
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
@@ -167,7 +168,7 @@ class UserForm(ModelForm):
         model = User
         fields = [
             "first_name", "last_name", "email",
-            "username", "group",
+            "username", "groups",
         ]
         widgets = {
             "first_name": TextInput(attrs={
@@ -185,8 +186,5 @@ class UserForm(ModelForm):
             "username": TextInput(attrs={
                 "class": "form-control border pe-2",
                 "placeholder": "أسم المستخدم"
-            }),
-            "group": Select(attrs={
-                "class": "form-control border pe-2",
             }),
         }

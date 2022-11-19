@@ -16,43 +16,63 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">اسم
-                                    المشروع
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    اﻷسم
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                    تاريخ البداية
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    أسم المستخدم
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    البريد اﻹلكتروني
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    مجموعة
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    تاريخ إنشاء الحساب
                                 </th>
                                 <th class="text-secondary opacity-7"></th>
                             </tr>
                             </thead>
                             <tbody>
-                            {% for proj in projects %}
+                            {% for user in object_list %}
                             <tr>
                                 <td>
-                                    <p class="text-sm mb-0 me-2">{{ proj.name }}</p>
+                                    <p class="text-sm mb-0 me-2">{{ user.get_full_name }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-sm mb-0 me-2">{{ user.username }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-sm mb-0 me-2">{{ user.email }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-sm mb-0 me-2">{{ user.groups.first.name }}</p>
                                 </td>
 
                                 <td class="align-middle">
-                                    <span class="text-secondary text-sm">{{ proj.created_at }}</span>
+                                    <span class="text-secondary text-sm">{{ user.date_joined }}</span>
                                 </td>
                                 <td class="align-middle d-flex align-items-center">
                                     <form
-                                            action="{% url 'project-update' proj.id %}"
+                                            action="{% url 'user-update' user.id %}"
                                             class="mx-2"
                                     > {% csrf_token %}
                                         <button type="submit" class="btn btn-sm btn-warning font-weight-bold text-xs"
-                                                data-toggle="tooltip" data-original-title="Edit project">
+                                                data-toggle="tooltip" data-original-title="Edit user">
                                             تعديل
                                         </button>
                                     </form>
+                                    {% if not user.is_superuser %}
                                     <form method="POST"
-                                          action="{% url 'project-delete' proj.id %}"
+                                          action="{% url 'user-delete' user.id %}"
                                           class="mx-2"
                                     > {% csrf_token %}
                                         <button type="submit" class="btn btn-sm btn-danger font-weight-bold text-xs"
-                                                data-toggle="tooltip" data-original-title="Remove project">حذف
+                                                data-toggle="tooltip" data-original-title="Remove user">حذف
                                         </button>
                                     </form>
+                                    {% endif %}
                                 </td>
                             </tr>
                             {% endfor %}

@@ -16,6 +16,7 @@ from .views import (
 from .views.account import account_create, account_list, account_detail, account_update, delete_account
 from .views.accounting_entry import create_entry
 from .views.project import project_index, project_update, delete_project
+from .views.user import UserListView, UserDetailView, user_update, delete_user, user_create
 
 user_router = DefaultRouter()
 user_router.register(r'api/users', UserViewSet, basename='user')
@@ -60,4 +61,10 @@ urlpatterns += [
     path('entries/', AccountingEntryListView.as_view(), name='entry-list'),
     path('entries/create/', create_entry, name='entry-create'),
     path('entries/<int:pk>/', AccountingEntryDetailView.as_view(), name='entry-detail'),
+
+    path('users/', UserListView.as_view(), name='user-list'),
+    path('users/create/', user_create, name='user-create'),
+    path('users/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
+    path('users/<int:pk>/update/', user_update, name='user-update'),
+    path('users/<int:pk>/delete/', delete_user, name='user-delete'),
 ]

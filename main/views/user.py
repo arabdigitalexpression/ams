@@ -13,18 +13,12 @@ from django.views.generic import ListView, DetailView
 from main.forms import UserForm
 
 
-@login_required(login_url="/users/login/")
+@login_required(login_url="/accounts/login/")
 @permission_required("auth.add_user")
 def user_create(request):
     form = UserForm(request.POST or None)
     if form.is_valid():
-        user = User(
-            first_name=form.cleaned_data["first_name"],
-            last_name=form.cleaned_data["last_name"],
-            username=form.cleaned_data["username"],
-            group=form.cleaned_data["group"],
-            email=form.cleaned_data["email"],
-        )
+        user = form.save()
         # TODO: generate random password then return it to success templates
         rand_password = "35715900"
         user.set_password(rand_password)
@@ -40,35 +34,23 @@ def user_create(request):
     })
 
 
-@login_required(login_url='/users/login/')
+@login_required(login_url='/accounts/login/')
 @permission_required("auth.change_user")
 def user_update(request, pk):
     user = get_object_or_404(User, id=pk)
-    if request.method == "POST":
-        form = UserForm(request.POST)
-        if form.is_valid():
-            user.first_name = form.cleaned_data["first_name"]
-            user.last_name = form.cleaned_data["last_name"]
-            user.email = form.cleaned_data["email"]
-            user.username = form.cleaned_data["username"]
-            user.group = form.cleaned_data["group"]
-            user.save()
-            messages.success(
-                request, f'تم تعديل المستخدم "{user.get_full_name()}".'
-            )
-            return HttpResponseRedirect(reverse("user-list"))
-    else:
-        form = UserForm(initial={
-            "first_name": user.first_name, "last_name": user.last_name,
-            "email": user.email, "username": user.username,
-            "group": user.group,
-        })
+    form = UserForm(request.POST or None, instance=user)
+    if form.is_valid():
+        form.save()
+        messages.success(
+            request, f'تم تعديل المستخدم "{user.get_full_name()}".'
+        )
+        return HttpResponseRedirect(reverse("user-list"))
     return render(request, 'main/user/form.html', {
         "user": user, "form": form, "is_update": True
     })
 
 
-@login_required(login_url='/users/login/')
+@login_required(login_url='/accounts/login/')
 @permission_required("auth.delete_user")
 def delete_user(request, pk):
     if request.POST:

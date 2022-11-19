@@ -1,0 +1,124 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block styles %}
+{{ block.super }}
+<link href="{% static 'css/select2.min.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+
+    {% if formset.non_field_errors %}
+    <ul>
+        {% for error in formset.non_field_errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if form.errors %}
+    <ul>
+        {% for error in form.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h5 class="text-white text-capitalize pe-3">تسجيل قيد اليومية</h5>
+            </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+                <form method="post">
+                    {% csrf_token %}
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="text-secondary text-center text-xxs font-weight-bolder opacity-7">
+                                حساب مدين
+                            </th>
+                            <th scope="col" class="text-secondary text-center text-xxs font-weight-bolder opacity-7">
+                                مبلغ مدين
+                            </th>
+                            <th scope="col" class="text-secondary text-center text-xxs font-weight-bolder opacity-7">
+                                مبلغ دائن
+                            </th>
+                            <th scope="col" class="text-secondary text-center text-xxs font-weight-bolder opacity-7">
+                                حساب دائن
+                            </th>
+                            <th scope="col" class="text-secondary text-center text-xxs font-weight-bolder opacity-7">
+                                مشروع
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody id="form-container">
+                        <td>{{debit_form.debit_account}}</td>
+                        <td>{{debit_form.debit_amount}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <tr>
+                        </tr>
+                        {{ formset.management_form}}
+                        {% for form in formset %}
+                        <tr class="credit-form">
+                            <td></td>
+                            <td></td>
+                            <td>{{ form.credit_amount }}</td>
+                            <td>{{ form.credit_account }}</td>
+                            <td>{{ form.project }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot class="border border-white">
+                        <tr>
+                            <td colspan="5">
+                                <button id="add-form" class="btn btn-primary mb-0" type="button">إضافة بند دائن</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                {{ form.description }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <input class="btn btn-primary mb-0" type="submit" value="حفظ">
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{{ block.super }}
+<script>
+    let creditForm = document.querySelectorAll(".credit-form");
+    let container = document.querySelector("#form-container");
+    let addButton = document.querySelector("#add-form");
+    let totalForms = document.querySelector("#id_items-TOTAL_FORMS");
+
+    let formNum = creditForm.length-1;
+    addButton.addEventListener('click', addForm);
+    function addForm(e){
+        e.preventDefault();
+        let newForm = creditForm[0].cloneNode(true);
+        let formRegex = RegExp(`items-(\\d)-`,'g');
+        formNum++;
+        newForm.innerHTML = newForm.innerHTML
+            .replace(formRegex, `items-${formNum}-`);
+        container.appendChild(newForm);
+        totalForms.setAttribute('value', `${formNum+1}`);
+    }
+
+</script>
+{% endblock %}
+
+

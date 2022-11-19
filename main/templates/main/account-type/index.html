@@ -27,11 +27,11 @@
                                 <th class="text-secondary text-center text-xxs font-weight-bolder opacity-7 ps-2">
                                     طبيعة الحساب
                                 </th>
-                                 <th class="text-secondary text-center text-xxs font-weight-bolder opacity-7 ps-2">
+                                <th class="text-secondary text-center text-xxs font-weight-bolder opacity-7 ps-2">
                                     الحساب الرئيسى
                                 </th>
                                 <th class="text-secondary text-center text-xxs font-weight-bolder opacity-7 ps-2">
-                                   العملة
+                                    العملة
                                 </th>
                                 <th class="text-secondary opacity-7"></th>
                             </tr>
@@ -42,13 +42,13 @@
                                 <td class="text-center"> {{ forloop.counter }}</td>
                                 <td class="text-center">
                                     {% if account.level_type == 'M' and account.has_children %}
-                                        <a href="{% url 'account-type-detail' account.id %}">
-                                            <i type="button" class="material-icons-round opacity-10">folder_open</i>
-                                        </a>
+                                    <a href="{% url 'account-type-detail' account.id %}">
+                                        <i type="button" class="material-icons-round opacity-10">folder_open</i>
+                                    </a>
                                     {% elif account.level_type == 'M' and not account.has_children %}
-                                        <i class="material-icons-round opacity-10">folder</i>
+                                    <i class="material-icons-round opacity-10">folder</i>
                                     {% elif account.level_type == 'S' %}
-                                        <i class="material-icons-round opacity-10">description</i>
+                                    <i class="material-icons-round opacity-10">description</i>
                                     {% endif %}
                                 </td>
                                 <td>
@@ -62,7 +62,8 @@
                                 </td>
                                 <td>
                                     <p class="text-sm text-center mb-0 me-2">
-                                        {% if account.parent_account.name %} {{ account.parent_account.name }} {% else %} - {% endif %}
+                                        {% if account.parent_account %} {{ account.parent_account.name }}
+                                        {% else %} <span>-</span> {% endif %}
                                     </p>
                                 </td>
                                 <td>
@@ -79,15 +80,24 @@
                                         </button>
                                     </form>
                                     {% if account.is_not_empty %}
-                                        <form method="POST"
-                                              action="{% url 'account-type-delete' account.id %}"
-                                              class="mx-2"
-                                        > {% csrf_token %}
-                                            <button type="submit" class="btn btn-sm btn-danger font-weight-bold text-xs"
-                                                    data-toggle="tooltip" data-original-title="Remove account">حذف
-                                            </button>
-                                        </form>
+                                    <form method="POST"
+                                          action="{% url 'account-type-delete' account.id %}"
+                                          class="mx-2"
+                                    > {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-danger font-weight-bold text-xs"
+                                                data-toggle="tooltip" data-original-title="Remove account">حذف
+                                        </button>
+                                    </form>
                                     {% endif %}
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6">
+                                    <p class="text-warning lead mb-0 text-center">
+                                        عذرا لا يوجد بيانات ... إبدأ بإنشاء حساب جديد من الزر أعلاه
+                                    </p>
+
                                 </td>
                             </tr>
                             {% endfor %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-md my-3 fixed-end me-3 rotate-caret  bg-gradient-dark"
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-md my-3 fixed-end me-3 rotate-caret bg-gradient-dark"
        id="sidenav-main">
     <div>
         <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute start-0 top-0 d-none d-xl-none"
@@ -23,7 +23,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link d-flex justify-content-between" href="../pages/tables.html">
+                <a class="nav-link d-flex justify-content-between" href="{% url 'entry-list' %}">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">table_view</i>
                         <span class="nav-link-text me-2">قيود اليومية</span>
@@ -110,7 +110,8 @@
 
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg overflow-x-hidden">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 mt-2 shadow-none border-radius-xl" id="navbarBlur"
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 mt-3 shadow-none border-radius-md bg-gradient-dark"
+         id="navbarBlur"
          navbar-scroll="true">
         <div class="container-fluid py-1 px-3">
             <div class="collapse navbar-collapse mt-sm-0 mt-2 px-0" id="navbar">
@@ -207,7 +208,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li><span class="text-primary fw-bold">مرحباً  ! </span><span>{{ user.first_name }}</span></li>
+                    <li><span class="text-primary fw-bold">مرحباً  ! </span><span class="text-white">{{ user.get_full_name }}</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -327,4 +329,28 @@
     </div>
 </div>
 
+<span id="to-top" class="bg-primary d-flex justify-content-center align-items-center text-white"
+      type="button">
+    <i class="material-icons-round opacity-10">expand_less</i>
+</span>
+
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script>
+        let toTop = document.querySelector("#to-top");
+        toTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        })
+
+
+
+
+
+
+</script>
 {% endblock %}

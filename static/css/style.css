@@ -1,6 +1,7 @@
     body{
         font-family: 'Tajawal Regular', Roboto, Arial;
         direction: rtl;
+        position: relative;
     }
     *{
         font-family:'Tajawal Regular', Roboto, Arial;
@@ -38,4 +39,14 @@
     /* Handle on hover */
     .navbar-vertical::-webkit-scrollbar-thumb:hover {
         background: rgba(200,200,200,0.4);
+    }
+    #to-top {
+    position:fixed;
+    width:40px;
+    height:40px;
+    bottom:50px;
+    left:50px;
+    text-decoration:none;
+    border-radius:50%;
+    z-index:999999;
     }

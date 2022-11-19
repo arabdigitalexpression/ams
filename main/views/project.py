@@ -83,7 +83,7 @@ def delete_project(request, pk):
 class ProjectCreateView(CreateView):
     model = Project
     fields = ['name']
-    template_name = 'main/project/create_form.html'
+    template_name = 'main/project/form.html'
 
 
 @method_decorator(login_required, name='dispatch')
@@ -97,7 +97,7 @@ class ProjectUpdateView(UpdateView):
 class ProjectListView(ListView):
     model = Project
     paginate_by = 20
-    template_name = 'main/project/list.html'
+    template_name = 'main/project/index.html'
 
 
 @method_decorator(login_required, name='dispatch')

@@ -67,13 +67,11 @@
             </li>
             <hr>
             <li class="nav-item">
-                <a class="nav-link d-flex justify-content-between" href="../pages/notifications.html">
+                <a class="nav-link d-flex justify-content-between" href="{% url 'user-list' %}">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">notifications</i>
-                        <span class="nav-link-text me-2">الإشعارات</span>
+                        <i class="material-icons-round opacity-10">group</i>
+                        <span class="nav-link-text me-2">المستخدمين</span>
                     </div>
-                    <span class="badge bg-gradient-primary">قريباً</span>
-
                 </a>
             </li>
             <li class="nav-item">
@@ -82,6 +80,15 @@
                         <i class="material-icons-round opacity-10">person</i>
                         <span class="nav-link-text me-2">الحساب التعريفي</span>
                     </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link d-flex justify-content-between" href="../pages/notifications.html">
+                    <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons-round opacity-10">notifications</i>
+                        <span class="nav-link-text me-2">الإشعارات</span>
+                    </div>
+                    <span class="badge bg-gradient-primary">قريباً</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -346,6 +353,15 @@
                 behavior: "smooth"
             });
         })
+
+
+
+
+
+
+
+
+
 
 
 

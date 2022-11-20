@@ -5,20 +5,44 @@
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-12">
-            <form method="POST"
-                  {% if is_update %}action="{% url 'user-update' user.id %}" {% endif %}
-                  class="d-flex align-items-center mb-5"
-            > {% csrf_token %}
-                {{ form.as_div }}
-                {% if is_update %}
-                <button type="submit" class="btn btn-primary mb-0 me-2">تعديل</button>
-                <a href="{% url 'user-list' %}" type="submit" class="btn btn-outline-primary mb-0 me-2">إلغاء</a>
-                {% else %}
-                <button type="submit" class="btn btn-primary mb-0 me-2">أضف مستخدم</button>
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h5 class="text-white text-capitalize pe-3">
+                            {% if is_update %}
+                            تعديل مستخدم "{{ user.get_full_name }}"
+                            {% else %}
+                            إنشاء مستخدم
+                            {% endif %}
+                        </h5>
+                    </div>
+                </div>
+                <div class="card-body px-3 pb-2">
+                    <form method="POST"
+                          {% if is_update %}action="{% url 'user-update' user.id %}" {% endif %}
+                    > {% csrf_token %}
+                        <div class="row mb-2">
+                            <div class="col-md-4">{{ form.first_name }}</div>
+                            <div class="col-md-4">{{ form.last_name }}</div>
+                            <div class="col-md-4">{{ form.username }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4">{{ form.email }}</div>
+                            <div class="col-md-4">{{ form.groups }}</div>
+                        </div>
+                        <div>
+                            {% if is_update %}
+                            <button type="submit" class="btn btn-primary mb-0 me-2">تعديل</button>
+                            <a href="{% url 'user-list' %}" type="submit" class="btn btn-outline-primary mb-0 me-2">إلغاء</a>
+                            {% else %}
+                            <button type="submit" class="btn btn-primary mb-0 me-2">أضف مستخدم</button>
 
-                {% endif %}
+                            {% endif %}
+                        </div>
 
-            </form>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

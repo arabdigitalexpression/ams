@@ -27,7 +27,7 @@ def user_create(request):
             request, f'تم إنشاء مستخدم "{user.get_full_name()}".'
         )
         return render(request, "main/user/success.html", {
-            "username": user.username, "password": rand_password
+            "username": user.username, "password": rand_password, "fullname": user.get_full_name
         })
     return render(request, "main/user/form.html", {
         "form": form, "is_update": False

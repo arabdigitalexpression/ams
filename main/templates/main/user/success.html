@@ -1,5 +1,29 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<h1>{{ password }}</h1>
+	<div class="page-header align-items-start min-vh-75">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-4 col-md-8 col-12 mx-auto">
+            <div class="card z-index-0 fadeIn3 fadeInBottom">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">تصريح دخول {{ fullname }}</h4>
+                </div>
+              </div>
+              <div class="card-body text-center">
+                  <div class="my-3">
+                    <h4>اسم المستخدم</h4>
+                    <p class="lead h5 text-secondary">{{ username }}</p>
+                  </div>
+                  <div class="mb-3">
+                    <h4>كلمة المرور</h4>
+                    <p class="lead h5 text-secondary">{{ password }}</p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
 {% endblock %}

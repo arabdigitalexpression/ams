@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView
 
 from main.forms import EntryFormSet, EntryForm, EntryDebitItemForm
 from main.models import AccountingEntry, EntryItem
+from AMS.settings import LOGIN_URL
 
 
 @method_decorator(login_required, name='dispatch')
@@ -38,7 +39,7 @@ class AccountingEntryCreateView(CreateView):
         return super().form_valid(form)
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url=LOGIN_URL)
 def create_entry(request):
     # create a form instance and populate it with data from the request:
     form = EntryForm(request.POST or None)

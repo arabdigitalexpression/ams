@@ -10,9 +10,10 @@ from django.views.generic.edit import CreateView, UpdateView
 
 from main.forms import ProjectForm
 from main.models import Project
+from AMS.settings import LOGIN_URL
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url=LOGIN_URL)
 def project_index(request):
     projects = Project.objects.all()
     if request.method == "POST":
@@ -34,7 +35,7 @@ def project_index(request):
         })
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url=LOGIN_URL)
 def project_update(request, pk):
     projects = Project.objects.all()
     project = get_object_or_404(Project, id=pk)
@@ -59,7 +60,7 @@ def project_update(request, pk):
         })
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url=LOGIN_URL)
 def delete_project(request, pk):
     if request.POST:
         project = get_object_or_404(Project, id=pk)

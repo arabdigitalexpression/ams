@@ -3,7 +3,7 @@ from rest_framework import viewsets
 from rest_framework import mixins
 # from rest_framework.response import Response
 from rest_framework import permissions  # authentication
-from django.contrib.auth.models import User
+from main.models import User
 
 from main.models import Project, AccountType, AccountingEntry, EntryItem
 from main.serializers import (

@@ -1,5 +1,9 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+
+
+class User(AbstractUser):
+    is_reset_password = models.BooleanField(default=True)
 
 
 class Currency(models.Model):

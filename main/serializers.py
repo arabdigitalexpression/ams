@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from main.models import User
 from rest_framework import serializers
 from rest_framework.fields import FloatField
 from rest_framework.relations import HyperlinkedIdentityField, HyperlinkedRelatedField

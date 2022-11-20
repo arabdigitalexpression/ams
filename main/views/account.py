@@ -10,9 +10,10 @@ from django.views.generic.edit import CreateView, UpdateView
 
 from main.forms import AccountCreateForm, AccountUpdateForm
 from main.models import AccountType
+from AMS.settings import LOGIN_URL
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url=LOGIN_URL)
 def account_list(request):
     accounts = AccountType.objects.filter(parent_account=None)
     return render(request, 'main/account-type/index.html', {
@@ -20,7 +21,7 @@ def account_list(request):
     })
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url=LOGIN_URL)
 def account_detail(request, pk):
     account = get_object_or_404(AccountType, id=pk)
     return render(request, 'main/account-type/index.html', {
@@ -28,7 +29,7 @@ def account_detail(request, pk):
     })
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url=LOGIN_URL)
 def account_create(request):
     form = AccountCreateForm(request.POST or None)
     if form.is_valid():
@@ -51,7 +52,7 @@ def account_create(request):
     })
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url=LOGIN_URL)
 def account_update(request, pk):
     account = get_object_or_404(AccountType, id=pk)
     if request.method == "POST":
@@ -82,7 +83,7 @@ def account_update(request, pk):
     })
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url=LOGIN_URL)
 def delete_account(request, pk):
     if request.POST:
         account = get_object_or_404(AccountType, id=pk)

@@ -4,14 +4,22 @@ from .api import (
     EntryItemViewSet,
 )
 from .project import (
-    ProjectCreateView, ProjectUpdateView,
-    ProjectListView, ProjectDetailView
+    ProjectDetailView, project_index,
+    project_update, delete_project
 )
 from .account import (
-    AccountTypeCreateView, AccountTypeUpdateView,
-    AccountTypeListView, AccountTypeDetailView
+    account_create, account_list, account_detail,
+    account_update, delete_account
 )
 from .accounting_entry import (
     AccountingEntryCreateView, AccountingEntryListView,
-    AccountingEntryDetailView
+    AccountingEntryDetailView, create_entry,
+)
+from .user import (
+    UserListView, user_profile,
+    user_update, delete_user, user_create
+)
+
+from .auth import (
+    set_password_page
 )

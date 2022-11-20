@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.contrib.auth.models import User
+from main.models import User
 from django.db.models import ProtectedError, RestrictedError
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
@@ -11,16 +11,16 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
 
 from main.forms import UserForm
+from AMS.settings import LOGIN_URL
 
 
-@login_required(login_url="/accounts/login/")
+@login_required(login_url=LOGIN_URL)
 @permission_required("auth.add_user")
 def user_create(request):
     form = UserForm(request.POST or None)
     if form.is_valid():
         user = form.save()
-        # TODO: generate random password then return it to success templates
-        rand_password = "35715900"
+        rand_password = User.objects.make_random_password()
         user.set_password(rand_password)
         user.save()
         messages.success(
@@ -34,7 +34,7 @@ def user_create(request):
     })
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url=LOGIN_URL)
 @permission_required("auth.change_user")
 def user_update(request, pk):
     user = get_object_or_404(User, id=pk)
@@ -50,7 +50,7 @@ def user_update(request, pk):
     })
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url=LOGIN_URL)
 @permission_required("auth.delete_user")
 def delete_user(request, pk):
     if request.POST:
@@ -79,8 +79,10 @@ class UserListView(PermissionRequiredMixin, ListView):
     template_name = 'main/user/index.html'
 
 
-@method_decorator(login_required, name='dispatch')
-class UserDetailView(PermissionRequiredMixin, DetailView):
-    model = User
-    permission_required = "auth.view_user"
-    template_name = 'main/user/detail.html'
+@login_required(login_url="/auth/accounts/login/")
+def user_profile(request, pk):
+    user = get_object_or_404(User, id=pk)
+
+    return render(request, "main/user/detail.html", {
+        "user": user, "is_current": user.id == request.user.id
+    })

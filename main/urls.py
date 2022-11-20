@@ -1,22 +1,29 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.shortcuts import reverse
 from rest_framework.routers import DefaultRouter
 
-from .forms import LoginForm
+from .forms import LoginForm, PasswordChangeForm
 from .views import (
     UserViewSet, ProjectViewSet, AccountTypeViewSet,
-    AccountingEntryViewSet, EntryItemViewSet, ProjectDetailView,
-    ProjectListView, ProjectCreateView, ProjectUpdateView,
-    AccountTypeListView, AccountTypeDetailView,
-    AccountTypeUpdateView, AccountTypeCreateView,
-    AccountingEntryCreateView, AccountingEntryListView,
-    AccountingEntryDetailView,
+    AccountingEntryViewSet, EntryItemViewSet,
+
+    ProjectDetailView, project_index,
+    project_update, delete_project,
+
+    AccountingEntryListView, AccountingEntryDetailView,
+    create_entry,
+
+    account_create, account_list, account_detail,
+    account_update, delete_account,
+
+    UserListView, user_profile,
+    user_update, delete_user, user_create,
+
+    set_password_page
+
     # setupView
 )
-from .views.account import account_create, account_list, account_detail, account_update, delete_account
-from .views.accounting_entry import create_entry
-from .views.project import project_index, project_update, delete_project
-from .views.user import UserListView, UserDetailView, user_update, delete_user, user_create
 
 user_router = DefaultRouter()
 user_router.register(r'api/users', UserViewSet, basename='user')
@@ -43,8 +50,15 @@ urlpatterns += [
     # TODO: the setup route here are for first time web app setup wizard.
     # path('setup/', setupView, name="setup"),
 
-    path('accounts/login/', auth_views.LoginView.as_view(form_class=LoginForm), name='login'),
-    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('auth/login/', auth_views.LoginView.as_view(
+        form_class=LoginForm,
+    ), name='login'),
+    path('auth/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('auth/change-password/', auth_views.PasswordChangeView.as_view(
+        template_name="main/user/password_change_form.html",
+        form_class=PasswordChangeForm, success_url="/"
+    ), name='logout'),
+    path('auth/set-password', set_password_page, name="set-password"),
 
     path('projects/', project_index, name='project-list'),
     # path('projects/create/', ProjectCreateView.as_view(), name='project-create'),
@@ -62,9 +76,9 @@ urlpatterns += [
     path('entries/create/', create_entry, name='entry-create'),
     path('entries/<int:pk>/', AccountingEntryDetailView.as_view(), name='entry-detail'),
 
-    path('users/', UserListView.as_view(), name='user-list'),
-    path('users/create/', user_create, name='user-create'),
-    path('users/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
-    path('users/<int:pk>/update/', user_update, name='user-update'),
-    path('users/<int:pk>/delete/', delete_user, name='user-delete'),
+    path('auth/users/', UserListView.as_view(), name='user-list'),
+    path('auth/users/create/', user_create, name='user-create'),
+    path('auth/users/<int:pk>/', user_profile, name='user-detail'),
+    path('auth/users/<int:pk>/update/', user_update, name='user-update'),
+    path('auth/users/<int:pk>/delete/', delete_user, name='user-delete'),
 ]

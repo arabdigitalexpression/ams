@@ -1,12 +1,15 @@
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import (
+    AuthenticationForm, PasswordChangeForm as PCF,
+    SetPasswordForm as SPF, UsernameField
+)
+from main.models import User
 from django.forms import (
     Form, ValidationError, Textarea, TextInput,
     CharField, BaseInlineFormSet, ModelForm
 )
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
-    NumberInput, Select, EmailInput
+    NumberInput, Select, EmailInput, HiddenInput
 )
 
 from .models import AccountingEntry, EntryItem, Project, AccountType
@@ -83,6 +86,35 @@ class LoginForm(AuthenticationForm):
         self.fields['username'].widget.attrs['placeholder'] = "اسم المستخدم"
         self.fields['password'].widget.attrs['class'] = "form-control"
         self.fields['password'].widget.attrs['placeholder'] = "كلمة المرور"
+
+
+class SetPasswordForm(SPF):
+
+    def __init__(self, user, *args, **kwargs):
+        super(SetPasswordForm, self).__init__(user, *args, **kwargs)
+        self.fields['new_password1'].widget.attrs['class'] = "form-control"
+        self.fields['new_password1'].widget.attrs['placeholder'] = "كلمة المرور الجديدة"
+        self.fields['new_password2'].widget.attrs['class'] = "form-control"
+        self.fields['new_password2'].widget.attrs['placeholder'] = "تأكيد كلمة المرور الجديدة"
+
+    def save(self, commit=True):
+        password = self.cleaned_data["new_password1"]
+        self.user.set_password(password)
+        self.user.is_reset_password = False
+        if commit:
+            self.user.save()
+        return self.user
+
+
+class PasswordChangeForm(PCF):
+    def __init__(self, request=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['old_password'].widget.attrs['class'] = "form-control "
+        self.fields['old_password'].widget.attrs['placeholder'] = "كلمة المرور الحالية"
+        self.fields['new_password1'].widget.attrs['class'] = "form-control"
+        self.fields['new_password1'].widget.attrs['placeholder'] = "كلمة المرور الجديدة"
+        self.fields['new_password2'].widget.attrs['class'] = "form-control"
+        self.fields['new_password2'].widget.attrs['placeholder'] = "تأكيد كلمة المرور الجديدة"
 
 
 # TODO: make user creation form for admin

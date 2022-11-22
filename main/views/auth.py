@@ -9,7 +9,9 @@ from AMS.settings import LOGIN_URL
 
 @login_required(login_url=LOGIN_URL)
 def set_password_page(request):
-    form = SetPasswordForm(request.POST or None)
+    form = SetPasswordForm(
+        user=request.user, data=request.POST or None
+    )
 
     if form.is_valid():
         user = form.save()

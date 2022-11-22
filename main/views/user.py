@@ -79,7 +79,7 @@ class UserListView(PermissionRequiredMixin, ListView):
     template_name = 'main/user/index.html'
 
 
-@login_required(login_url="/auth/accounts/login/")
+@login_required(login_url=LOGIN_URL)
 def user_profile(request, pk):
     user = get_object_or_404(User, id=pk)
 

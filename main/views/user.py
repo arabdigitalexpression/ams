@@ -2,6 +2,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
+
+from main.decorators import owner_or_superuser_required
 from main.models import User
 from django.db.models import ProtectedError, RestrictedError
 from django.http import HttpResponseRedirect
@@ -34,7 +36,7 @@ def user_create(request):
 
 
 @login_required
-@permission_required("auth.change_user")
+@owner_or_superuser_required
 def user_update(request, pk):
     user = get_object_or_404(User, id=pk)
     form = UserForm(request.POST or None, instance=user)
@@ -82,34 +84,3 @@ class UserListView(PermissionRequiredMixin, ListView):
 def user_detail(request, pk):
     user = get_object_or_404(User, id=pk)
     return render(request, "main/user/detail.html", {"user": user})
-
-
-@login_required
-def user_profile(request):
-    return render(request, "main/user/profile.html")
-
-
-@login_required
-@user_passes_test(lambda user: user.is_superuser)
-def user_reset_password(request, pk):
-    user = get_object_or_404(User, id=pk)
-    if request.method == "POST":
-        rand_password = User.objects.make_random_password()
-        user.set_password(rand_password)
-        user.save()
-        messages.success(
-            request, f'تم تغيير كلمة مرور "{user.get_full_name()}".'
-        )
-        return render(request, "main/user/success.html", {
-            "username": user.username, "password": rand_password,
-            "fullname": user.get_full_name,
-        })
-    return HttpResponseRedirect(reverse("user-list"))
-
-
-@login_required
-@user_passes_test(lambda user: user.is_superuser)
-def user_permissions(request, pk):
-    user = get_object_or_404(User, id=pk)
-
-    return render(request, "main/user/profile.html")

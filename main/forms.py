@@ -2,7 +2,7 @@ from django.contrib.auth.forms import (
     AuthenticationForm, PasswordChangeForm as PCF,
     SetPasswordForm as SPF, UsernameField
 )
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, Permission
 
 from django.forms import (
     Form, ModelForm, ValidationError, TextInput,
@@ -221,19 +221,9 @@ class UserForm(ModelForm):
                 "class": "form-control border pe-2",
                 "placeholder": "أسم المستخدم"
             }),
-        }
-
-
-class UserPermissionForm(ModelForm):
-    class Meta:
-        model = User
-        fields = [
-            "user_permissions",
-        ]
-        widgets = {
-            "user_permissions": CheckboxSelectMultiple(attrs={
-                "class": "form-control border pe-2"
-            }),
+            "groups": CheckboxSelectMultiple(
+                attrs={"class": "border pe-2"}
+            )
         }
 
 
@@ -249,6 +239,13 @@ class GroupPermissionForm(ModelForm):
                 "placeholder": "أسم المجوعة"
             }),
             "permissions": CheckboxSelectMultiple(attrs={
-                "class": "form-control border pe-2"
+                "class": "border pe-2"
             }),
         }
+    #
+    # def __init__(self, user=None, **kwargs):
+    #     super(GroupPermissionForm, self).__init__(**kwargs)
+    #     if user:
+    #         self.fields['permissions'].queryset = Permission.objects.filter(
+    #             content_type__model=""
+    #         )

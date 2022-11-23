@@ -16,11 +16,12 @@ from .accounting_entry import (
     AccountingEntryDetailView, create_entry,
 )
 from .user import (
-    UserListView, user_detail, user_profile,
+    UserListView, user_detail,
     user_update, delete_user, user_create,
-    user_reset_password, user_permissions,
 )
 
 from .auth import (
-    set_password_page
+    set_password_page, reset_user_password,
+    user_profile, list_group, create_group,
+    update_group,
 )

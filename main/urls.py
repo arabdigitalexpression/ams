@@ -17,10 +17,12 @@ from .views import (
     account_create, account_list, account_detail,
     account_update, delete_account,
 
-    UserListView, user_detail, user_profile,
+    UserListView, user_detail,
     user_update, delete_user, user_create,
 
-    set_password_page
+    set_password_page, reset_user_password,
+    user_profile, list_group, create_group,
+    update_group,
 
     # setupView
 )
@@ -82,4 +84,9 @@ urlpatterns += [
     path('auth/users/<int:pk>/', user_detail, name='user-detail'),
     path('auth/users/<int:pk>/update/', user_update, name='user-update'),
     path('auth/users/<int:pk>/delete/', delete_user, name='user-delete'),
+    path('auth/users/<int:pk>/reset-password/', reset_user_password, name='user-reset-password'),
+
+    path('auth/groups/', list_group, name='group-list'),
+    path('auth/groups/create/', create_group, name='group-create'),
+    path('auth/groups/<int:pk>/update/', update_group, name='group-update'),
 ]

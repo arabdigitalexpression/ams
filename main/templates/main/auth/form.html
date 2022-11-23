@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h5 class="text-white text-capitalize pe-3">
+                            {% if is_update %}
+                            تعديل مجموعة "{{ group.name }}"
+                            {% else %}
+                            إنشاء مجموعة
+                            {% endif %}
+                        </h5>
+                    </div>
+                </div>
+                <div class="card-body px-3 pb-2">
+                    <form method="POST"
+                          {% if is_update %}action="{% url 'group-update' user.id %}" {% endif %}
+                    > {% csrf_token %}
+                        <div class="row mb-2">
+                            <div class="col-md-4">{{ form.name }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4">{{ form.permissions }}</div>
+                        </div>
+                        <div>
+                            {% if is_update %}
+                            <button type="submit" class="btn btn-primary mb-0 me-2">تعديل</button>
+                            <a href="{% url 'group-list' %}" type="submit" class="btn btn-outline-primary mb-0 me-2">إلغاء</a>
+                            {% else %}
+                            <button type="submit" class="btn btn-primary mb-0 me-2">أضف مجموعة</button>
+
+                            {% endif %}
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

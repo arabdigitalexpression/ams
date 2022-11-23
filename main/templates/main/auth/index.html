@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <a href="{% url 'group-create' %}" class="btn btn-primary">إنشاء مجموعة جديدة</a>
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h5 class="text-white text-capitalize pe-3">المجموعات</h5>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    اﻷسم
+                                </th>
+                                <th class="text-secondary opacity-7"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for group in groups %}
+                            <tr>
+                                <td>
+                                    <p class="text-sm mb-0 me-2">{{ group.name }}</p>
+                                </td>
+                                <td class="align-middle d-flex align-items-center">
+                                    <a href="{% url 'group-update' group.id %}">تعديل</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

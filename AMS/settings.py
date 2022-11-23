@@ -159,6 +159,7 @@ SIMPLE_JWT = {
 }
 
 LOGIN_URL = '/auth/login/'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/auth/login/'
 
 AUTH_USER_MODEL = 'main.User'

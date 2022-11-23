@@ -17,7 +17,7 @@ from .views import (
     account_create, account_list, account_detail,
     account_update, delete_account,
 
-    UserListView, user_profile,
+    UserListView, user_detail, user_profile,
     user_update, delete_user, user_create,
 
     set_password_page
@@ -76,9 +76,10 @@ urlpatterns += [
     path('entries/create/', create_entry, name='entry-create'),
     path('entries/<int:pk>/', AccountingEntryDetailView.as_view(), name='entry-detail'),
 
+    path('auth/profile/', user_profile, name='user-profile'),
     path('auth/users/', UserListView.as_view(), name='user-list'),
     path('auth/users/create/', user_create, name='user-create'),
-    path('auth/users/<int:pk>/', user_profile, name='user-detail'),
+    path('auth/users/<int:pk>/', user_detail, name='user-detail'),
     path('auth/users/<int:pk>/update/', user_update, name='user-update'),
     path('auth/users/<int:pk>/delete/', delete_user, name='user-delete'),
 ]

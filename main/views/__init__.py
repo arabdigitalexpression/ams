@@ -16,8 +16,9 @@ from .accounting_entry import (
     AccountingEntryDetailView, create_entry,
 )
 from .user import (
-    UserListView, user_profile,
-    user_update, delete_user, user_create
+    UserListView, user_detail, user_profile,
+    user_update, delete_user, user_create,
+    user_reset_password, user_permissions,
 )
 
 from .auth import (

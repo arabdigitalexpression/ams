@@ -2,17 +2,22 @@ from django.contrib.auth.forms import (
     AuthenticationForm, PasswordChangeForm as PCF,
     SetPasswordForm as SPF, UsernameField
 )
-from main.models import User
+from django.contrib.auth.models import Group
+
 from django.forms import (
-    Form, ValidationError, Textarea, TextInput,
-    CharField, BaseInlineFormSet, ModelForm
+    Form, ModelForm, ValidationError, TextInput,
+    CharField, BaseInlineFormSet,
 )
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
-    NumberInput, Select, EmailInput, HiddenInput
+    Textarea, NumberInput, CheckboxSelectMultiple,
+    Select, EmailInput, HiddenInput
 )
 
-from .models import AccountingEntry, EntryItem, Project, AccountType
+from .models import (
+    AccountingEntry, EntryItem, Project,
+    AccountType, User
+)
 
 
 class EntryFormset(BaseInlineFormSet):
@@ -215,5 +220,35 @@ class UserForm(ModelForm):
             "username": TextInput(attrs={
                 "class": "form-control border pe-2",
                 "placeholder": "أسم المستخدم"
+            }),
+        }
+
+
+class UserPermissionForm(ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            "user_permissions",
+        ]
+        widgets = {
+            "user_permissions": CheckboxSelectMultiple(attrs={
+                "class": "form-control border pe-2"
+            }),
+        }
+
+
+class GroupPermissionForm(ModelForm):
+    class Meta:
+        model = Group
+        fields = [
+            "name", "permissions",
+        ]
+        widgets = {
+            "name": TextInput(attrs={
+                "class": "form-control border pe-2",
+                "placeholder": "أسم المجوعة"
+            }),
+            "permissions": CheckboxSelectMultiple(attrs={
+                "class": "form-control border pe-2"
             }),
         }

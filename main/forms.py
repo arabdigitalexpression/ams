@@ -114,11 +114,11 @@ class SetPasswordForm(SPF):
 class PasswordChangeForm(PCF):
     def __init__(self, request=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['old_password'].widget.attrs['class'] = "form-control "
+        self.fields['old_password'].widget.attrs['class'] = "form-control border pe-2 mb-3 "
         self.fields['old_password'].widget.attrs['placeholder'] = "كلمة المرور الحالية"
-        self.fields['new_password1'].widget.attrs['class'] = "form-control"
+        self.fields['new_password1'].widget.attrs['class'] = "form-control border pe-2 mb-3"
         self.fields['new_password1'].widget.attrs['placeholder'] = "كلمة المرور الجديدة"
-        self.fields['new_password2'].widget.attrs['class'] = "form-control"
+        self.fields['new_password2'].widget.attrs['class'] = "form-control border pe-2 mb-3"
         self.fields['new_password2'].widget.attrs['placeholder'] = "تأكيد كلمة المرور الجديدة"
 
 

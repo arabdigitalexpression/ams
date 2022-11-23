@@ -55,15 +55,17 @@
                                     <span class="text-secondary text-sm">{{ user.date_joined }}</span>
                                 </td>
                                 <td class="align-middle d-flex align-items-center">
-                                    <form
-                                            action="{% url 'user-update' user.id %}"
-                                            class="mx-2"
-                                    > {% csrf_token %}
-                                        <button type="submit" class="btn btn-sm btn-warning font-weight-bold text-xs"
-                                                data-toggle="tooltip" data-original-title="Edit user">
-                                            تعديل
-                                        </button>
-                                    </form>
+
+                                    <a href="{% url 'user-detail' user.id %}" type="submit"
+                                       class="btn btn-sm btn-info font-weight-bold text-xs"
+                                       data-toggle="tooltip" data-original-title="Edit user">
+                                        تفاصيل
+                                    </a>
+                                    <a href="{% url 'user-update' user.id %}" type="submit"
+                                       class="btn btn-sm btn-warning font-weight-bold text-xs mx-2"
+                                       data-toggle="tooltip" data-original-title="Edit user">
+                                        تعديل
+                                    </a>
                                     {% if not user.is_superuser %}
                                     <form method="POST"
                                           action="{% url 'user-delete' user.id %}"

@@ -1,8 +1,87 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-{% if is_current %}
-<h2>lol</h2>
-{% endif %}
-<h1>{{ user.username }}</h1>
+<div class="container-fluid px-2 px-md-4">
+    <div class="page-header min-height-300 border-radius-xl mt-4"
+         style="background-image: url('/static/img/profile.jpg');">
+        <span class="mask  bg-gradient-primary  opacity-6"></span>
+    </div>
+    <div class="card card-body mx-3 mx-md-4 mt-n6">
+        <div class="row gx-4 mb-2">
+            <div class="col-auto my-auto">
+                <div class="h-100">
+                    <h5 class="mb-1">
+                        {{ user.get_full_name }}
+                    </h5>
+                    <p class="mb-0 font-weight-normal text-sm">
+                        {{ user.groups.first.name }} </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-12 col-xl-6">
+                    <div class="card card-plain h-100">
+                        <div class="card-header pb-0 p-3">
+                            <div class="row">
+                                <div class="col-md-8 d-flex align-items-center">
+                                    <h6 class="mb-0">معلومات الحساب</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-3">
+                            <p class="text-sm">
+                                Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally
+                                difficult paths, choose the one more painful in the short term (pain avoidance is
+                                creating an illusion of equality).
+                            </p>
+                            <hr class="horizontal gray-light my-4">
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">الاسم
+                                    بالكامل:</strong> &nbsp; {{ user.get_full_name }}
+                                </li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                        class="text-dark">اسم المستخدم:</strong> &nbsp; {{ user.username }}
+                                </li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                        class="text-dark">رقم الهاتف:</strong> &nbsp; (44) 123 1234 123
+                                </li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                        class="text-dark">البريد الإلكترونى:</strong> &nbsp; {{ user.email }}
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card card-plain h-100">
+                                <div class="card-header pb-0 p-3">
+                                    <h6 class="mb-0">تغيير بيانات الحساب</h6>
+                                </div>
+                                <div class="card-body p-3">
+                                    <a href="{% url 'user-update' user.id %}" class="btn btn-primary">تغيير بيانات
+                                        الحساب</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-12">
+                            <div class="card card-plain h-100">
+                                <div class="card-header pb-0 p-3">
+                                    <h6 class="mb-0">تغيير كلمة المرور</h6>
+                                </div>
+                                <div class="card-body p-3">
+                                    <a href="{% url 'change-password' %}" class="btn btn-primary">تغيير كلمة المرور</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

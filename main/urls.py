@@ -1,6 +1,5 @@
-from django.urls import path
 from django.contrib.auth import views as auth_views
-from django.shortcuts import reverse
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 from .forms import LoginForm, PasswordChangeForm
@@ -40,7 +39,6 @@ entry_router.register(r'api/entries', AccountingEntryViewSet, basename='accounti
 entry_item_router = DefaultRouter()
 entry_item_router.register(r'api/entry-items', EntryItemViewSet, basename='entryitem')
 
-
 urlpatterns = user_router.urls
 urlpatterns += project_router.urls
 urlpatterns += account_type_router.urls
@@ -57,7 +55,7 @@ urlpatterns += [
     path('auth/change-password/', auth_views.PasswordChangeView.as_view(
         template_name="main/user/password_change_form.html",
         form_class=PasswordChangeForm, success_url="/"
-    ), name='logout'),
+    ), name='change-password'),
     path('auth/set-password', set_password_page, name="set-password"),
 
     path('projects/', project_index, name='project-list'),

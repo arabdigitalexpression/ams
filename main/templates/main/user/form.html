@@ -28,7 +28,11 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-4">{{ form.email }}</div>
-                            <div class="col-md-4">{{ form.groups }}</div>
+                            <div class="col-md-4">
+                                {% for group in form.groups %}
+                                    {% include "widgets/chip_checkbox_option.html" with widget=group.data %}
+                                {% endfor %}
+                            </div>
                         </div>
                         <div>
                             {% if is_update %}

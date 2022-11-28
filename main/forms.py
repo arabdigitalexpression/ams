@@ -22,21 +22,10 @@ from .models import (
 
 class EntryFormset(BaseInlineFormSet):
 
-    def __init__(
-            self,
-            data=None,
-            files=None,
-            instance=None,
-            save_as_new=False,
-            prefix=None,
-            queryset=None,
-            **kwargs,
-    ):
+    def __init__(self, *args, **kwargs):
         self.debit_amount = kwargs.pop('debit_amount')
         self.debit_account = kwargs.pop('debit_account')
-        super(EntryFormset, self).__init__(
-            data, files, instance, save_as_new, prefix, queryset, **kwargs
-        )
+        super(EntryFormset, self).__init__(*args, **kwargs)
 
     def clean(self):
         super(EntryFormset, self).clean()
@@ -64,6 +53,35 @@ class EntryDebitItemForm(ModelForm):
             'debit_account': Select(attrs={'class': 'form-select border'})
         }
 
+    def __init__(self, *args, **kwargs):
+        super(EntryDebitItemForm, self).__init__(*args, **kwargs)
+        self.fields['debit_account'].queryset = AccountType.objects.filter(
+            level_type=AccountType.LevelEnum.SUB.value
+        )
+
+
+class EntryCreditItemForm(ModelForm):
+    class Meta:
+        model = EntryItem
+        fields = ['credit_amount', 'credit_account', 'project']
+        widgets = {
+            'credit_amount': NumberInput(
+                attrs={'class': 'form-control border', 'min': '1'}
+            ),
+            'credit_account': Select(
+                attrs={'class': 'form-select border'}
+            ),
+            'project': Select(
+                attrs={'class': 'form-select border'}
+            ),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(EntryCreditItemForm, self).__init__(*args, **kwargs)
+        self.fields['credit_account'].queryset = AccountType.objects.filter(
+            level_type=AccountType.LevelEnum.SUB.value
+        )
+
 
 class EntryForm(Form):
     description = CharField(widget=Textarea(attrs={
@@ -72,15 +90,11 @@ class EntryForm(Form):
 
 
 EntryFormSet = inlineformset_factory(
-    AccountingEntry, EntryItem, formset=EntryFormset, can_delete=False, extra=1,
+    AccountingEntry, EntryItem, form=EntryCreditItemForm,
+    formset=EntryFormset, can_delete=False, extra=1,
     fields=(
         'credit_amount', 'credit_account', 'project'
     ),
-    widgets={
-        'credit_amount': NumberInput(attrs={'class': 'form-control border', 'min': '1'}),
-        'credit_account': Select(attrs={'class': 'form-select border'}),
-        'project': Select(attrs={'class': 'form-select border'}),
-    }
 )
 
 

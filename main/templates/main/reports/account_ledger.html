@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>حساب استاذ {{ account.name }}</h1>
+    {% if from_date and to_date %}
+    <h2>
+        الفترة من
+        {{ from_date|date:'Y-m-d' }}
+        إلي
+        {{ to_date|date:'Y-m-d' }}
+    </h2>
+    {% endif %}
+    <hr/>
+
+    <table class="table align-items-center mb-0">
+        <thead>
+            <tr>
+                <th>المبلغ</th>
+                <th>البيان</th>
+                <th>التاريخ</th>
+                <th>المبلغ</th>
+                <th>البيان</th>
+                <th>التاريخ</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in credit_items %}
+            <tr>
+                <td>{{ item.amount }}</td>
+                <td>{{ item.account_name }}</td>
+                <td>{{ item.number }}/{{ item.created_at|date:'Y/m/d' }}
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        {% for item in debit_items %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ item.amount }}</td>
+                <td>{{ item.account_name }}</td>
+                <td>{{ item.number }}/{{ item.created_at|date:'Y/m/d' }}
+                </td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <th>{% if not is_credit_gt %}{{ total_diff }}{% endif %}</th>
+                <td>{% if not is_credit_gt %} الفرق {% endif %}</td>
+                <td></td>
+                <th>{% if is_credit_gt %}{{ total_diff }}{% endif %}</th>
+                <td>{% if is_credit_gt %} الفرق {% endif %}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>{{ total }}</th>
+                <td>المجموع</td>
+                <td></td>
+                <th>{{ total }}</th>
+                <td>المجموع</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

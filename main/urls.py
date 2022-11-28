@@ -23,6 +23,8 @@ from .views import (
     user_profile, list_group, create_group,
     update_group,
 
+    account_ledger_report,
+
     # setupView
 )
 
@@ -71,6 +73,8 @@ urlpatterns += [
     path('account-types/<int:pk>/', account_detail, name='account-type-detail'),
     path('account-types/<int:pk>/update/', account_update, name='account-type-update'),
     path('account-types/<int:pk>/delete/', delete_account, name='account-type-delete'),
+
+    path('reports/account-ledger/<int:pk>/', account_ledger_report, name='account-ledger-report'),
 
     path('entries/', AccountingEntryListView.as_view(), name='entry-list'),
     path('entries/create/', create_entry, name='entry-create'),

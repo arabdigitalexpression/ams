@@ -3,6 +3,7 @@ from django.contrib.auth.forms import (
     SetPasswordForm as SPF, UsernameField
 )
 from django.contrib.auth.models import Group, Permission
+from django.db.models import Q
 
 from django.forms import (
     Form, ModelForm, ValidationError, TextInput,
@@ -256,10 +257,19 @@ class GroupPermissionForm(ModelForm):
                 "class": "border pe-2"
             }),
         }
-    #
-    # def __init__(self, user=None, **kwargs):
-    #     super(GroupPermissionForm, self).__init__(**kwargs)
-    #     if user:
-    #         self.fields['permissions'].queryset = Permission.objects.filter(
-    #             content_type__model=""
-    #         )
+
+    def __init__(self, user=None, **kwargs):
+        super(GroupPermissionForm, self).__init__(**kwargs)
+        self.fields['permissions'].choices = [
+            (perm.id, perm.name)
+            for perm in Permission.objects.exclude(
+                Q(content_type__app_label="admin") |
+                Q(content_type__app_label="auth") |
+                Q(content_type__app_label="contenttypes") |
+                Q(content_type__app_label="sessions") |
+                Q(codename="change_entryitem") |
+                Q(codename="delete_entryitem") |
+                Q(codename="change_accountingentry") |
+                Q(codename="delete_accountingentry")
+            ).all()
+        ]

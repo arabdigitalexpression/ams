@@ -19,8 +19,8 @@ from .user import (
     UserListView, user_detail,
     user_update, delete_user, user_create,
 )
-from .reports import (
-    account_ledger_report
+from .ledger import (
+    ledger_page, account_ledger
 )
 
 from .auth import (

@@ -7,7 +7,8 @@ from django.db.models import Q
 
 from django.forms import (
     Form, ModelForm, ValidationError, TextInput,
-    CharField, BaseInlineFormSet,
+    CharField, BaseInlineFormSet, ChoiceField,
+    DateField
 )
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
@@ -273,3 +274,17 @@ class GroupPermissionForm(ModelForm):
                 Q(codename="delete_accountingentry")
             ).all()
         ]
+
+
+class LedgerFilterForm(Form):
+    from_date = DateField()
+    to_date = DateField()
+    project = ChoiceField(choices=[
+        (project.id, project.name)
+        for project in Project.objects.all()
+    ])
+    account = ChoiceField(choices=[
+        (account_type.id, account_type.name)
+        for account_type in AccountType.objects
+        .filter(level_type=AccountType.LevelEnum.SUB.value).all()
+    ])

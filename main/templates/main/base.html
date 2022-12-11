@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse px-0 w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav pe-1">
             <li class="nav-item">
-                <a class="nav-link d-flex justify-content-between " href="../pages/dashboard.html">
+                <a class="nav-link d-flex justify-content-between " href="#">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">dashboard</i>
                         <span class="nav-link-text me-2">لوحة القيادة</span>
@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link d-flex justify-content-between" href="../pages/billing.html">
+                <a class="nav-link d-flex justify-content-between" href="#">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">receipt_long</i>
                         <span class="nav-link-text me-2">حساب الأستاذ</span>
@@ -56,7 +56,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link d-flex justify-content-between" href="../pages/sign-up.html">
+                <a class="nav-link d-flex justify-content-between" href="#">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">document_scanner</i>
                         <span class="nav-link-text me-2">التقارير</span>
@@ -67,9 +67,17 @@
             </li>
             <hr>
             <li class="nav-item">
+                <a class="nav-link d-flex justify-content-between" href="{% url 'group-list' %}">
+                    <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons-round opacity-10">groups</i>
+                        <span class="nav-link-text me-2">المجموعات</span>
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link d-flex justify-content-between" href="{% url 'user-list' %}">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons-round opacity-10">group</i>
+                        <i class="material-icons-round opacity-10">supervisor_account</i>
                         <span class="nav-link-text me-2">المستخدمين</span>
                     </div>
                 </a>
@@ -83,7 +91,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link d-flex justify-content-between" href="../pages/notifications.html">
+                <a class="nav-link d-flex justify-content-between" href="#">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">notifications</i>
                         <span class="nav-link-text me-2">الإشعارات</span>
@@ -92,7 +100,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link d-flex justify-content-between" href="../pages/sign-in.html">
+                <a class="nav-link d-flex justify-content-between" href="#">
                     <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons-round opacity-10">settings</i>
                         <span class="nav-link-text me-2"> الإعدادات</span>

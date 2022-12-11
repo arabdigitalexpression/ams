@@ -104,5 +104,5 @@ def update_group(request, pk):
         return HttpResponseRedirect(reverse("group-list"))
 
     return render(request, "main/auth/form.html", {
-        "form": form, "is_update": True,
+        "form": form, "is_update": True, "group": group
     })

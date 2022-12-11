@@ -3,6 +3,13 @@
 {% block content %}
 
 <div class="container-fluid py-4">
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+    <div class="col alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+        {% endfor %}
+    {% endif %}
     <div class="row">
         <div class="col-12">
             <div class="card my-4">

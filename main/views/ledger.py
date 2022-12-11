@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 # from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.db.models import Prefetch, F
+from django.db.models import Prefetch, F, Q
 from django.http import Http404
 from django.shortcuts import render
 
@@ -97,6 +97,12 @@ def ledger_page(request):
     if form.is_valid():
         from_date = form.cleaned_data.get("from_date")
         to_date = form.cleaned_data.get("to_date")
+        project_id = form.cleaned_data.get("project")
+        account_id = form.cleaned_data.get("account")
+
+        project_query = Q()
+        if project_id:
+            project_query = Q(credit_items__project__id=project_id)
 
         account = AccountType.objects \
             .select_related("currency", "parent_account") \
@@ -104,7 +110,7 @@ def ledger_page(request):
                 Prefetch(
                     "credit_items__entry",
                     queryset=EntryItem.objects.filter(
-                        project=form.cleaned_data.get("project"),
+                        project_query,
                         entry__created_at__range=(from_date, to_date)
                     ),
                     to_attr="credit_items"
@@ -112,35 +118,37 @@ def ledger_page(request):
                 Prefetch(
                     "debit_items__entry",
                     queryset=EntryItem.objects.filter(
-                        project=form.cleaned_data.get("project"),
+                        project_query,
                         entry__created_at__range=(from_date, to_date)
                     ),
                     to_attr="debit_items"
                 ),
                 "credit_items__project",
                 "debit_items__project") \
-            .get(id=form.cleaned_data.get("account"))
+            .get(project_query, id=account_id)
         credit_items = account.credit_items \
             .annotate(
                 amount=F("credit_amount"),
                 account_name=F("debit_account__name"),
+                project_name=F("project__name"),
                 number=F("entry__number"),
                 created_at=F("entry__created_at"),
             ) \
             .values(
                 "amount", "account_name",
-                "number", "created_at"
+                "number", "created_at", "project_name"
             )
         debit_items = account.debit_items \
             .annotate(
                 amount=F("credit_amount"),
                 account_name=F("credit_account__name"),
+                project_name=F("project__name"),
                 number=F("entry__number"),
                 created_at=F("entry__created_at"),
             ) \
             .values(
                 "amount", "account_name",
-                "number", "created_at"
+                "number", "created_at", "project_name"
             )
 
         dates = [item["created_at"] for item in [*credit_items, *debit_items]]

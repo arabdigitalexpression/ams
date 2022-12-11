@@ -21,6 +21,7 @@
                 <th>المبلغ</th>
                 <th>البيان</th>
                 <th>التاريخ</th>
+                <th>المشروع</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td>{{ item.project_name }}</td>
             </tr>
         {% endfor %}
         {% for item in debit_items %}
@@ -43,6 +45,11 @@
                 <td>{{ item.amount }}</td>
                 <td>{{ item.account_name }}</td>
                 <td>{{ item.number }}/{{ item.created_at|date:'Y/m/d' }}
+                </td>
+                <td>
+                    {% if item.project_name %}
+                    {{ item.project_name }}
+                    {% else %} <span>-</span> {% endif %}
                 </td>
             </tr>
         {% endfor %}

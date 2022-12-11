@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.forms import (
     Form, ModelForm, ValidationError, TextInput,
     CharField, BaseInlineFormSet, ChoiceField,
-    DateField
+    DateField, DateInput
 )
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
@@ -277,14 +277,25 @@ class GroupPermissionForm(ModelForm):
 
 
 class LedgerFilterForm(Form):
-    from_date = DateField()
-    to_date = DateField()
-    project = ChoiceField(choices=[
+    from_date = DateField(required=False, widget=DateInput(attrs={
+        "type": "date"
+    }))
+    to_date = DateField(required=False, widget=DateInput(attrs={
+        "type": "date"
+    }))
+    project = ChoiceField(required=False, choices=[("", "---------")] + [
         (project.id, project.name)
         for project in Project.objects.all()
     ])
-    account = ChoiceField(choices=[
+    account = ChoiceField(required=False, choices=[("", "---------")] + [
         (account_type.id, account_type.name)
         for account_type in AccountType.objects
         .filter(level_type=AccountType.LevelEnum.SUB.value).all()
     ])
+
+    def clean(self):
+        super(LedgerFilterForm, self).clean()
+
+        account = self.cleaned_data['account']
+        if not account:
+            raise ValidationError("برجاء إختيار نوع حساب علي الأقل.")

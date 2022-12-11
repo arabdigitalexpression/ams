@@ -1,5 +1,5 @@
 [client]
-database = AMS
-user = adef_ams
-password = Adef@ams2022
+database = adef_ams
+user = root
+password = toor
 default-character-set = utf8mb4

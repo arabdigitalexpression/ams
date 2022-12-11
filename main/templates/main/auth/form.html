@@ -22,10 +22,19 @@
                           {% if is_update %}action="{% url 'group-update' user.id %}" {% endif %}
                     > {% csrf_token %}
                         <div class="row mb-2">
-                            <div class="col-md-4">{{ form.name }}</div>
+
+                            <div class="col-md-4">
+
+                                <label for="{{ form.name.id_for_label }}">اسم المجموعة</label>
+                                {{ form.name }}</div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col-md-4">{{ form.permissions }}</div>
+                            <h6 class="fw-normal">الصلاحيات</h6>
+                            <ul class="ks-cboxtags">
+                                {% for permission in form.permissions %}
+                                    <li>{% include "widgets/chip_checkbox_option.html" with widget=permission.data %}</li>
+                                {% endfor%}
+                            </ul>
                         </div>
                         <div>
                             {% if is_update %}

@@ -30,7 +30,9 @@
                                     <p class="text-sm mb-0 me-2">{{ group.name }}</p>
                                 </td>
                                 <td class="align-middle d-flex align-items-center">
-                                    <a href="{% url 'group-update' group.id %}">تعديل</a>
+                                    <a  href="{% url 'group-update' group.id %}"
+                                    class="btn btn-sm btn-warning font-weight-bold text-xs mx-2"
+                                       data-toggle="tooltip" data-original-title="Edit gruop">تعديل</a>
                                 </td>
                             </tr>
                             {% endfor %}

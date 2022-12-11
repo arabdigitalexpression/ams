@@ -238,7 +238,6 @@ class UserForm(ModelForm):
                 "placeholder": "أسم المستخدم"
             }),
             "groups": CheckboxSelectMultiple(
-                attrs={"class": "border pe-2"}
             )
         }
 

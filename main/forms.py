@@ -3,10 +3,12 @@ from django.contrib.auth.forms import (
     SetPasswordForm as SPF, UsernameField
 )
 from django.contrib.auth.models import Group, Permission
+from django.db.models import Q
 
 from django.forms import (
     Form, ModelForm, ValidationError, TextInput,
-    CharField, BaseInlineFormSet,
+    CharField, BaseInlineFormSet, ChoiceField,
+    DateField
 )
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
@@ -255,10 +257,33 @@ class GroupPermissionForm(ModelForm):
                 "class": "border pe-2"
             }),
         }
-    #
-    # def __init__(self, user=None, **kwargs):
-    #     super(GroupPermissionForm, self).__init__(**kwargs)
-    #     if user:
-    #         self.fields['permissions'].queryset = Permission.objects.filter(
-    #             content_type__model=""
-    #         )
+
+    def __init__(self, user=None, **kwargs):
+        super(GroupPermissionForm, self).__init__(**kwargs)
+        self.fields['permissions'].choices = [
+            (perm.id, perm.name)
+            for perm in Permission.objects.exclude(
+                Q(content_type__app_label="admin") |
+                Q(content_type__app_label="auth") |
+                Q(content_type__app_label="contenttypes") |
+                Q(content_type__app_label="sessions") |
+                Q(codename="change_entryitem") |
+                Q(codename="delete_entryitem") |
+                Q(codename="change_accountingentry") |
+                Q(codename="delete_accountingentry")
+            ).all()
+        ]
+
+
+class LedgerFilterForm(Form):
+    from_date = DateField()
+    to_date = DateField()
+    project = ChoiceField(choices=[
+        (project.id, project.name)
+        for project in Project.objects.all()
+    ])
+    account = ChoiceField(choices=[
+        (account_type.id, account_type.name)
+        for account_type in AccountType.objects
+        .filter(level_type=AccountType.LevelEnum.SUB.value).all()
+    ])

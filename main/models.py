@@ -5,6 +5,15 @@ from django.db import models
 class User(AbstractUser):
     is_reset_password = models.BooleanField(default=True)
 
+    class Meta:
+        default_permissions = []
+        permissions = [
+            ("add_user", "إضافة مستخدم"),
+            ("change_user", "تغيير بيانات مستخدم"),
+            ("delete_user", "حذف مستخدم"),
+            ("view_user", "عرض بيانات مستخدم"),
+        ]
+
 
 class Currency(models.Model):
     name = models.CharField(max_length=100)
@@ -12,6 +21,15 @@ class Currency(models.Model):
     code = models.CharField(unique=True, max_length=3)
     is_primary = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        default_permissions = []
+        permissions = [
+            ("add_currency", "إضافة عملة"),
+            ("change_currency", "تغيير بيانات عملة"),
+            ("delete_currency", "حذف عملة"),
+            ("view_currency", "عرض بيانات عملة"),
+        ]
 
     def __str__(self):
         return self.name
@@ -45,6 +63,15 @@ class AccountType(models.Model):
         'self', on_delete=models.SET_NULL, null=True, blank=True,
         related_name="child_account"
     )
+
+    class Meta:
+        default_permissions = []
+        permissions = [
+            ("add_accounttype", "إضافة حساب"),
+            ("change_accounttype", "تغيير بيانات حساب"),
+            ("delete_accounttype", "حذف حساب"),
+            ("view_accounttype", "عرض بيانات حساب"),
+        ]
 
     def __str__(self):
         return self.name
@@ -81,6 +108,15 @@ class Project(models.Model):
     name = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        default_permissions = []
+        permissions = [
+            ("add_project", "إضافة مشروع"),
+            ("change_project", "تغيير بيانات مشروع"),
+            ("delete_project", "حذف مشروع"),
+            ("view_project", "عرض بيانات مشروع"),
+        ]
+
     def __str__(self):
         return self.name
 
@@ -101,6 +137,13 @@ class AccountingEntry(models.Model):
     reverse_entry = models.ForeignKey(
         'self', on_delete=models.SET_NULL, null=True, blank=True
     )
+
+    class Meta:
+        default_permissions = []
+        permissions = [
+            ("add_accountingentry", "إضافة قيد"),
+            ("view_accountingentry", "عرض بيانات قيد"),
+        ]
 
     @property
     def serial_number(self):
@@ -134,6 +177,13 @@ class EntryItem(models.Model):
         Project, on_delete=models.SET_NULL,
         blank=True, null=True, related_name="items"
     )
+
+    class Meta:
+        default_permissions = []
+        permissions = [
+            ("add_entryitem", "إضافة بند"),
+            ("view_entryitem", "عرض بيانات بند"),
+        ]
 
     def __str__(self):
         return f"entry with ledger id: {self.entry.id}"

@@ -25,9 +25,6 @@
                                 <th class="text-secondary text-center text-xxs font-weight-bolder opacity-7 ps-2">
                                     مسجل عن طريق
                                 </th>
-                                <th class="text-secondary text-center text-xxs font-weight-bolder opacity-7 ps-2">
-                                    القيد العكسى
-                                </th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -43,15 +40,6 @@
                                 </td>
                                 <td>
                                     <p class="text-sm text-center mb-0 me-2">{{ entry.created_by.username }}</p>
-                                </td>
-                                <td>
-                                    <p class="text-sm text-center mb-0 me-2">
-                                        {% if entry.reverse_entry %}
-                                        {{ entry.reverse_entry.serial_number }}
-                                        {% else %}
-                                        <span>-</span>
-                                        {% endif %}
-                                    </p>
                                 </td>
                                 <td class="align-middle d-flex align-items-center">
                                     <a type="submit" class="btn btn-sm btn-info font-weight-bold text-xs"

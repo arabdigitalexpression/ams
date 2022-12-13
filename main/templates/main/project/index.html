@@ -11,17 +11,17 @@
             > {% csrf_token %}
                 {{ form.name }}
                 {% if is_update %}
-                <button type="submit" class="btn btn-primary mb-0 me-2">تعديل</button>
-                <a href="{% url 'project-list' %}" type="submit" class="btn btn-outline-primary mb-0 me-2">إلغاء</a>
+                <button type="submit" class="btn btn-info mb-0 me-2">تعديل</button>
+                <a href="{% url 'project-list' %}" type="submit" class="btn btn-outline-info mb-0 me-2">إلغاء</a>
                 {% else %}
-                <button type="submit" class="btn btn-primary mb-0 me-2">أضف مشروع</button>
+                <button type="submit" class="btn btn-info mb-0 me-2">أضف مشروع</button>
 
                 {% endif %}
 
             </form>
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                    <div class="bg-gradient-info shadow-info border-radius-lg pt-4 pb-3">
                         <h5 class="text-white text-capitalize pe-3">المشاريع</h5>
                     </div>
                 </div>
@@ -30,10 +30,10 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">اسم
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">اسم
                                     المشروع
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">
                                     تاريخ البداية
                                 </th>
                                 <th class="text-secondary opacity-7"></th>
@@ -72,7 +72,7 @@
                             {% empty %}
                             <tr>
                                 <td colspan="6">
-                                    <p class="text-warning lead mb-0 text-center">
+                                    <p class="text-info lead mb-0 text-center">
                                         عذرا لا يوجد بيانات ... إبدأ بإضافة مشاريع
                                     </p>
 

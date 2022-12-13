@@ -276,6 +276,7 @@ class GroupPermissionForm(ModelForm):
 
 
 class LedgerFilterForm(Form):
+
     from_date = DateField()
     to_date = DateField()
     project = ChoiceField(choices=[
@@ -287,3 +288,14 @@ class LedgerFilterForm(Form):
         for account_type in AccountType.objects
         .filter(level_type=AccountType.LevelEnum.SUB.value).all()
     ])
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['from_date'].widget.attrs['class'] = "form-control border pe-2 mb-3 "
+        self.fields['from_date'].widget.attrs['placeholder'] = "من تاريخ"
+        self.fields['to_date'].widget.attrs['class'] = "form-control border pe-2 mb-3"
+        self.fields['to_date'].widget.attrs['placeholder'] = "إلى تاريخ"
+        self.fields['project'].widget.attrs['class'] = "form-control border pe-2 mb-3"
+        self.fields['account'].widget.attrs['class'] = "form-control border pe-2 mb-3"
+
+

@@ -16,10 +16,10 @@
         {% endfor %}
     </ul>
     {% endif %}
-    {% if form.errors %}
+    {% if formset.errors %}
     <ul>
-        {% for error in form.errors %}
-        <li>{{ error }}</li>
+        {% for field in formset.errors %}
+            {{ field }}
         {% endfor %}
     </ul>
     {% endif %}

@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.forms import (
     Form, ModelForm, ValidationError, TextInput,
     CharField, BaseInlineFormSet, ChoiceField,
-    DateField
+    DateField, DateInput
 )
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
@@ -277,29 +277,38 @@ class GroupPermissionForm(ModelForm):
 
 class LedgerFilterForm(Form):
     from_date = DateField(required=False, widget=DateInput(attrs={
-        "type": "date"
+        "type": "date", "class": "form-control border pe-2 mb-3 ",
+        "placeholder": "من تاريخ"
     }))
     to_date = DateField(required=False, widget=DateInput(attrs={
-        "type": "date"
+        "type": "date", "class": "form-control border pe-2 mb-3 ",
+        "placeholder": "إلى تاريخ"
     }))
-    project = ChoiceField(required=False, choices=[("", "---------")] + [
-        (project.id, project.name)
-        for project in Project.objects.all()
-    ])
-    account = ChoiceField(required=False, choices=[("", "---------")] + [
-        (account_type.id, account_type.name)
-        for account_type in AccountType.objects
-        .filter(level_type=AccountType.LevelEnum.SUB.value).all()
-    ])
-
-    def __init__(self, *args, **kwargs):
-        super(LedgerFilterForm).__init__(*args, **kwargs)
-        self.fields['from_date'].widget.attrs['class'] = "form-control border pe-2 mb-3 "
-        self.fields['from_date'].widget.attrs['placeholder'] = "من تاريخ"
-        self.fields['to_date'].widget.attrs['class'] = "form-control border pe-2 mb-3"
-        self.fields['to_date'].widget.attrs['placeholder'] = "إلى تاريخ"
-        self.fields['project'].widget.attrs['class'] = "form-control border pe-2 mb-3"
-        self.fields['account'].widget.attrs['class'] = "form-control border pe-2 mb-3"
+    project = ChoiceField(
+        required=False,
+        choices=[("", "--- اختر مشروع ---")] + [
+            (project.id, project.name)
+            for project in Project.objects.all()
+        ],
+        widget=Select(
+            attrs={
+                "class": "form-control border pe-2 mb-3"
+            }
+        )
+    )
+    account = ChoiceField(
+        required=False,
+        choices=[("", "--- اختر حساب ---")] + [
+            (account_type.id, account_type.name)
+            for account_type in AccountType.objects
+            .filter(level_type=AccountType.LevelEnum.SUB.value).all()
+        ],
+        widget=Select(
+            attrs={
+                "class": "form-control border pe-2 mb-3"
+            }
+        )
+    )
 
     def clean(self):
         super(LedgerFilterForm, self).clean()

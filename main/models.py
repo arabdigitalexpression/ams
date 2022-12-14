@@ -174,8 +174,8 @@ class EntryItem(models.Model):
         AccountingEntry, on_delete=models.PROTECT, related_name="items"
     )
     project = models.ForeignKey(
-        Project, on_delete=models.SET_NULL,
-        blank=True, null=True, related_name="items"
+        Project, on_delete=models.PROTECT,
+        related_name="items"
     )
 
     class Meta:

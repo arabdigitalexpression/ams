@@ -169,7 +169,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +178,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (72,'contenttypes','0001_initial','2022-11-20 18:27:56.255534'),(73,'contenttypes','0002_remove_content_type_name','2022-11-20 18:27:56.383960'),(74,'auth','0001_initial','2022-11-20 18:27:56.613103'),(75,'auth','0002_alter_permission_name_max_length','2022-11-20 18:27:56.792907'),(76,'auth','0003_alter_user_email_max_length','2022-11-20 18:27:56.911023'),(77,'auth','0004_alter_user_username_opts','2022-11-20 18:27:57.053085'),(78,'auth','0005_alter_user_last_login_null','2022-11-20 18:27:57.128274'),(79,'auth','0006_require_contenttypes_0002','2022-11-20 18:27:57.220359'),(80,'auth','0007_alter_validators_add_error_messages','2022-11-20 18:27:57.412409'),(81,'auth','0008_alter_user_username_max_length','2022-11-20 18:27:57.604761'),(82,'auth','0009_alter_user_last_name_max_length','2022-11-20 18:27:57.796628'),(83,'auth','0010_alter_group_name_max_length','2022-11-20 18:27:57.938541'),(84,'auth','0011_update_proxy_permissions','2022-11-20 18:27:58.047222'),(85,'auth','0012_alter_user_first_name_max_length','2022-11-20 18:27:58.180566'),(86,'main','0001_initial','2022-11-20 18:27:58.347761'),(87,'sessions','0001_initial','2022-11-20 18:27:58.431276'),(88,'main','0002_alter_user_options_user_is_reset_password_and_more','2022-11-20 18:29:09.584205'),(90,'main','0003_auto_20221207_1023','2022-12-07 13:24:03.487113');
+INSERT INTO `django_migrations` VALUES (72,'contenttypes','0001_initial','2022-11-20 18:27:56.255534'),(73,'contenttypes','0002_remove_content_type_name','2022-11-20 18:27:56.383960'),(74,'auth','0001_initial','2022-11-20 18:27:56.613103'),(75,'auth','0002_alter_permission_name_max_length','2022-11-20 18:27:56.792907'),(76,'auth','0003_alter_user_email_max_length','2022-11-20 18:27:56.911023'),(77,'auth','0004_alter_user_username_opts','2022-11-20 18:27:57.053085'),(78,'auth','0005_alter_user_last_login_null','2022-11-20 18:27:57.128274'),(79,'auth','0006_require_contenttypes_0002','2022-11-20 18:27:57.220359'),(80,'auth','0007_alter_validators_add_error_messages','2022-11-20 18:27:57.412409'),(81,'auth','0008_alter_user_username_max_length','2022-11-20 18:27:57.604761'),(82,'auth','0009_alter_user_last_name_max_length','2022-11-20 18:27:57.796628'),(83,'auth','0010_alter_group_name_max_length','2022-11-20 18:27:57.938541'),(84,'auth','0011_update_proxy_permissions','2022-11-20 18:27:58.047222'),(85,'auth','0012_alter_user_first_name_max_length','2022-11-20 18:27:58.180566'),(86,'main','0001_initial','2022-11-20 18:27:58.347761'),(87,'sessions','0001_initial','2022-11-20 18:27:58.431276'),(88,'main','0002_alter_user_options_user_is_reset_password_and_more','2022-11-20 18:29:09.584205'),(90,'main','0003_auto_20221207_1023','2022-12-07 13:24:03.487113'),(91,'main','0004_alter_accountingentry_options_and_more','2022-12-14 14:56:07.050175');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +204,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('4erpcvky24scdnzq4h72j7m0craubamz','.eJxVjMsOwiAURP-FtSE8Sisu3fsN5DLcStVAUtqV8d9tky50OXPOzFsEWpcc1sZzmJK4CCtOv10kPLnsID2o3KtELcs8Rbkr8qBN3mri1_Vw_w4ytbyt0UfnO6e8d_0QFTQx24hxy2w1dwBZd4ZBgiKvFXtjYDkORCqNGuLzBe_JOLQ:1owpIh:uscouSzuKtxIHn3YzcKl2N3juKqhVom1q3xUGelv0r8','2022-12-04 18:44:19.140104'),('4z0tncsw8znvsteym3ho1xl21aussay4','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oumml:npvtC7BT3Oij3pne3w3uftkI-btbML0T58g_5snnv8c','2022-11-29 03:38:55.770620'),('72jeer3wdeqe3al57f2pnnex0wkmbhpg','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1owpMA:19BtEvunIAcDZt1hzoDt4Ify6aFsE3Yi91zueG7TbTw','2022-12-04 18:47:54.737348'),('7od8k3e2t1aqtlz8zxoacmaybiphqi7v','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1owiP3:5qTboPFyebeVPc9T7ELIBNW9jhE4riKVEyqQS3dkoF8','2022-12-04 11:22:25.749387'),('cxihpzv635bwoim5pkzwk1pp22v4xzb1','.eJxVjDsOwjAQBe_iGlmOF7xeSnrOYO36gwPIkeKkQtwdIqWA9s3Me6nA61LD2vMcxqTOyqrD7yYcH7ltIN253SYdp7bMo-hN0Tvt-jql_Lzs7t9B5V6_NTnw0fNwQqGhWDAgTIa4YIqCIMUjFETj0WbyBcQKkrNGjrYYh1m9P9IoN10:1owjnZ:puKr9RWD-wYUxCHjJfU2mPVuse6rNELccUWyE9rDiZ8','2022-12-04 12:51:49.511603'),('dj2weayz4o2vt803gqfgyo34kkuzfai1','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oujYY:Rh8QBeaxS2ooFRexbxHtptPvqtlOGjQh4rWvjkCGFcc','2022-11-29 00:12:02.514968'),('e2q6sienyrfpj0ojs5dmk5qm4agnhydh','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onhax:l0ce-fHs8SwGMq5TASI-NqqqYGhchKiY5zFb5lDLDe8','2022-11-09 14:41:27.871179'),('i49so012wqkgp9enoyn4t3jz9jw2ctb3','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oumcU:_tgu25RqKOKNSFh8wugA6IPeAkd7Mb67s2GKDpqzErY','2022-11-29 03:28:18.881833'),('jvq6rdnu6yxh8jn086xqgc4fjzsl5rcz','.eJxVjMsOwiAURP-FtSE8Sisu3fsN5DLcStVAUtqV8d9tky50OXPOzFsEWpcc1sZzmJK4CCtOv10kPLnsID2o3KtELcs8Rbkr8qBN3mri1_Vw_w4ytbyt0UfnO6e8d_0QFTQx24hxy2w1dwBZd4ZBgiKvFXtjYDkORCqNGuLzBe_JOLQ:1owpHV:SvqmAreAagm-MtNQ1t8cJW5GEYyH2ac1gZV4kZiZSGk','2022-12-04 18:43:05.352308'),('lwyeowieaalmoofvjpwe7yy61fcu0mwy','.eJxVjDsOwjAQBe_iGlmOF7xeSnrOYO36gwPIkeKkQtwdIqWA9s3Me6nA61LD2vMcxqTOyqrD7yYcH7ltIN253SYdp7bMo-hN0Tvt-jql_Lzs7t9B5V6_NTnw0fNwQqGhWDAgTIa4YIqCIMUjFETj0WbyBcQKkrNGjrYYh1m9P9IoN10:1owjXV:bPpRL6HIDYlTXhObM5GHI1EeDPjZXiVBkWbOBZEbvgE','2022-12-04 12:35:13.357902'),('mn8mqzgjkko8bmf3tpbcpj9wy0mox2mn','.eJxVjEEOwiAQRe_C2hCgUMCl-56BzAyjVA0kpV0Z765NutDtf-_9l0iwrSVtnZc0Z3EWRpx-NwR6cN1BvkO9NUmtrsuMclfkQbucWubn5XD_Dgr08q2RgopBWVIeNTtrXLgqzdYFrwcmxzaiNhEjRR6yh5FMHsADsQ8jghLvD88LN9U:1owjNb:QxF7TAJGPVFscHcAeWo6APYjjo7JvYiGAWbzb771KnM','2022-12-04 12:24:59.078881'),('nma2nm2aup547vz8vshu9s6nhdbb61zx','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onhBC:nsdQsfIzqlaCST97N92bAEZ3tRThqxjAdVUjJ3EUudw','2022-11-09 14:14:50.027735'),('rhlyhj71rdoimwbxp155z22ibz5pfvsb','.eJxVjMsOwiAURP-FtSE8Sisu3fsN5DLcStVAUtqV8d9tky50OXPOzFsEWpcc1sZzmJK4CCtOv10kPLnsID2o3KtELcs8Rbkr8qBN3mri1_Vw_w4ytbyt0UfnO6e8d_0QFTQx24hxy2w1dwBZd4ZBgiKvFXtjYDkORCqNGuLzBe_JOLQ:1owpDb:Yq5RZ5_3X7i1_l9r0FLuzjSNNXQUTeTM3lmDn3jj4So','2022-12-04 18:39:03.636176'),('rtmfhp4cshu5af4ba8x144c44muhkilt','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onh3z:IijDuHobUW1ZPlpQoA8GamYPfGeHV4rb3Wl361T8Rz0','2022-11-09 14:07:23.227025'),('xomep0irfq8qh31o1cmjxvlutb2pcf49','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1p2uLg:0mpT8wBk-MdCwv1yA6UBJ2kuS4GESKMyy48p-WNo7hk','2022-12-21 13:20:32.674190');
+INSERT INTO `django_session` VALUES ('4erpcvky24scdnzq4h72j7m0craubamz','.eJxVjMsOwiAURP-FtSE8Sisu3fsN5DLcStVAUtqV8d9tky50OXPOzFsEWpcc1sZzmJK4CCtOv10kPLnsID2o3KtELcs8Rbkr8qBN3mri1_Vw_w4ytbyt0UfnO6e8d_0QFTQx24hxy2w1dwBZd4ZBgiKvFXtjYDkORCqNGuLzBe_JOLQ:1owpIh:uscouSzuKtxIHn3YzcKl2N3juKqhVom1q3xUGelv0r8','2022-12-04 18:44:19.140104'),('4z0tncsw8znvsteym3ho1xl21aussay4','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oumml:npvtC7BT3Oij3pne3w3uftkI-btbML0T58g_5snnv8c','2022-11-29 03:38:55.770620'),('72jeer3wdeqe3al57f2pnnex0wkmbhpg','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1owpMA:19BtEvunIAcDZt1hzoDt4Ify6aFsE3Yi91zueG7TbTw','2022-12-04 18:47:54.737348'),('7od8k3e2t1aqtlz8zxoacmaybiphqi7v','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1owiP3:5qTboPFyebeVPc9T7ELIBNW9jhE4riKVEyqQS3dkoF8','2022-12-04 11:22:25.749387'),('cxihpzv635bwoim5pkzwk1pp22v4xzb1','.eJxVjDsOwjAQBe_iGlmOF7xeSnrOYO36gwPIkeKkQtwdIqWA9s3Me6nA61LD2vMcxqTOyqrD7yYcH7ltIN253SYdp7bMo-hN0Tvt-jql_Lzs7t9B5V6_NTnw0fNwQqGhWDAgTIa4YIqCIMUjFETj0WbyBcQKkrNGjrYYh1m9P9IoN10:1owjnZ:puKr9RWD-wYUxCHjJfU2mPVuse6rNELccUWyE9rDiZ8','2022-12-04 12:51:49.511603'),('dj2weayz4o2vt803gqfgyo34kkuzfai1','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oujYY:Rh8QBeaxS2ooFRexbxHtptPvqtlOGjQh4rWvjkCGFcc','2022-11-29 00:12:02.514968'),('e2q6sienyrfpj0ojs5dmk5qm4agnhydh','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onhax:l0ce-fHs8SwGMq5TASI-NqqqYGhchKiY5zFb5lDLDe8','2022-11-09 14:41:27.871179'),('i49so012wqkgp9enoyn4t3jz9jw2ctb3','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1oumcU:_tgu25RqKOKNSFh8wugA6IPeAkd7Mb67s2GKDpqzErY','2022-11-29 03:28:18.881833'),('jvq6rdnu6yxh8jn086xqgc4fjzsl5rcz','.eJxVjMsOwiAURP-FtSE8Sisu3fsN5DLcStVAUtqV8d9tky50OXPOzFsEWpcc1sZzmJK4CCtOv10kPLnsID2o3KtELcs8Rbkr8qBN3mri1_Vw_w4ytbyt0UfnO6e8d_0QFTQx24hxy2w1dwBZd4ZBgiKvFXtjYDkORCqNGuLzBe_JOLQ:1owpHV:SvqmAreAagm-MtNQ1t8cJW5GEYyH2ac1gZV4kZiZSGk','2022-12-04 18:43:05.352308'),('l13rj7qttth613dwretas73n6ju2oqyj','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1p2vrk:nB8dWNrqrYaqsCFGORw_OxxActeBmx3muyRVuOc1HVE','2022-12-21 14:57:44.328288'),('lwyeowieaalmoofvjpwe7yy61fcu0mwy','.eJxVjDsOwjAQBe_iGlmOF7xeSnrOYO36gwPIkeKkQtwdIqWA9s3Me6nA61LD2vMcxqTOyqrD7yYcH7ltIN253SYdp7bMo-hN0Tvt-jql_Lzs7t9B5V6_NTnw0fNwQqGhWDAgTIa4YIqCIMUjFETj0WbyBcQKkrNGjrYYh1m9P9IoN10:1owjXV:bPpRL6HIDYlTXhObM5GHI1EeDPjZXiVBkWbOBZEbvgE','2022-12-04 12:35:13.357902'),('mn8mqzgjkko8bmf3tpbcpj9wy0mox2mn','.eJxVjEEOwiAQRe_C2hCgUMCl-56BzAyjVA0kpV0Z765NutDtf-_9l0iwrSVtnZc0Z3EWRpx-NwR6cN1BvkO9NUmtrsuMclfkQbucWubn5XD_Dgr08q2RgopBWVIeNTtrXLgqzdYFrwcmxzaiNhEjRR6yh5FMHsADsQ8jghLvD88LN9U:1owjNb:QxF7TAJGPVFscHcAeWo6APYjjo7JvYiGAWbzb771KnM','2022-12-04 12:24:59.078881'),('nma2nm2aup547vz8vshu9s6nhdbb61zx','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onhBC:nsdQsfIzqlaCST97N92bAEZ3tRThqxjAdVUjJ3EUudw','2022-11-09 14:14:50.027735'),('rhlyhj71rdoimwbxp155z22ibz5pfvsb','.eJxVjMsOwiAURP-FtSE8Sisu3fsN5DLcStVAUtqV8d9tky50OXPOzFsEWpcc1sZzmJK4CCtOv10kPLnsID2o3KtELcs8Rbkr8qBN3mri1_Vw_w4ytbyt0UfnO6e8d_0QFTQx24hxy2w1dwBZd4ZBgiKvFXtjYDkORCqNGuLzBe_JOLQ:1owpDb:Yq5RZ5_3X7i1_l9r0FLuzjSNNXQUTeTM3lmDn3jj4So','2022-12-04 18:39:03.636176'),('rtmfhp4cshu5af4ba8x144c44muhkilt','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1onh3z:IijDuHobUW1ZPlpQoA8GamYPfGeHV4rb3Wl361T8Rz0','2022-11-09 14:07:23.227025'),('xomep0irfq8qh31o1cmjxvlutb2pcf49','.eJxVjEsOwjAMRO-SNYqSyCExS_acIbIdhxZQK_WzQtydVuoCdqN5b-ZtCq1LV9ZZp9JXczHenH47JnnqsIP6oOE-WhmHZerZ7oo96GxvY9XX9XD_Djqau22dKFNlj4mCSqsxSUCHzL4Jh6hNReGMQIDOBcwBHLYtOhCImTyYzxcC4TfQ:1p2uLg:0mpT8wBk-MdCwv1yA6UBJ2kuS4GESKMyy48p-WNo7hk','2022-12-21 13:20:32.674190');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,7 +228,7 @@ CREATE TABLE `main_accountingentry` (
   KEY `main_accountingentry_reverse_entry_id_543d9997_fk_main_acco` (`reverse_entry_id`),
   CONSTRAINT `main_accountingentry_created_by_id_b268cef7_fk_auth_user_id` FOREIGN KEY (`created_by_id`) REFERENCES `main_user` (`id`),
   CONSTRAINT `main_accountingentry_reverse_entry_id_543d9997_fk_main_acco` FOREIGN KEY (`reverse_entry_id`) REFERENCES `main_accountingentry` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,6 +237,7 @@ CREATE TABLE `main_accountingentry` (
 
 LOCK TABLES `main_accountingentry` WRITE;
 /*!40000 ALTER TABLE `main_accountingentry` DISABLE KEYS */;
+INSERT INTO `main_accountingentry` VALUES (7,1,200,'asdsadas dsad sada sdxvczv adwq23214','2022-12-07 14:52:12.127160',1,NULL),(8,2,100,'sadsa d wqr 2314 12 33421rewa','2022-12-07 14:53:11.545765',1,NULL),(9,3,100,'sa 3e 2134 sadfsdrt dsfsdhdfhg','2022-12-07 14:53:31.977060',1,NULL),(10,1,900,'dsadsadsad wqqe 213 214 dshdfh51','2022-12-11 13:10:57.555782',1,NULL),(11,2,500,'sadczxf ewqr23143r5wasfd5 sa5d 5sa','2022-12-11 13:12:02.034257',1,NULL);
 /*!40000 ALTER TABLE `main_accountingentry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,7 +263,7 @@ CREATE TABLE `main_accounttype` (
   KEY `main_accounttype_currency_id_7fc4127c_fk_main_currency_id` (`currency_id`),
   CONSTRAINT `main_accounttype_currency_id_7fc4127c_fk_main_currency_id` FOREIGN KEY (`currency_id`) REFERENCES `main_currency` (`id`),
   CONSTRAINT `main_accounttype_parent_account_id_f534a17e_fk_main_acco` FOREIGN KEY (`parent_account_id`) REFERENCES `main_accounttype` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,7 +272,7 @@ CREATE TABLE `main_accounttype` (
 
 LOCK TABLES `main_accounttype` WRITE;
 /*!40000 ALTER TABLE `main_accounttype` DISABLE KEYS */;
-INSERT INTO `main_accounttype` VALUES (4,'أصول','2022-11-15 00:23:52.140449','D',0,1,'M',NULL,1),(5,'التزامات','2022-11-15 00:23:54.866209','D',0,1,'M',NULL,1),(6,'حقوق الملكية','2022-11-15 00:23:57.228202','D',0,1,'M',NULL,1),(7,'الإرادات','2022-11-15 00:23:59.916535','C',0,1,'M',NULL,1),(8,'المصروفات','2022-11-15 00:24:03.484743','C',0,1,'M',NULL,1),(10,'أصول ثابتة','2022-11-15 02:52:42.795130','D',0,0,'M',4,1),(11,'أثاث','2022-11-15 05:56:49.287107','D',0,0,'S',10,2),(13,'التزامات طويلة الأجل','2022-11-15 05:57:43.011534','C',0,0,'M',5,1);
+INSERT INTO `main_accounttype` VALUES (4,'أصول','2022-11-15 00:23:52.140449','D',0,1,'M',NULL,1),(5,'التزامات','2022-11-15 00:23:54.866209','D',0,1,'M',NULL,1),(6,'حقوق الملكية','2022-11-15 00:23:57.228202','D',0,1,'M',NULL,1),(7,'الإرادات','2022-11-15 00:23:59.916535','C',0,1,'M',NULL,1),(8,'المصروفات','2022-11-15 00:24:03.484743','C',0,1,'M',NULL,1),(10,'أصول ثابتة','2022-11-15 02:52:42.795130','D',0,0,'M',4,1),(11,'أثاث','2022-11-15 05:56:49.287107','D',0,0,'S',10,2),(13,'التزامات طويلة الأجل','2022-11-15 05:57:43.011534','C',0,0,'M',5,1),(14,'test','2022-12-07 14:50:59.584561','D',0,0,'S',13,1),(15,'test 2','2022-12-11 13:10:21.866860','D',0,0,'S',13,1);
 /*!40000 ALTER TABLE `main_accounttype` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -316,7 +317,7 @@ CREATE TABLE `main_entryitem` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `credit_amount` double NOT NULL,
   `entry_id` bigint NOT NULL,
-  `project_id` bigint DEFAULT NULL,
+  `project_id` bigint NOT NULL,
   `credit_account_id` bigint DEFAULT NULL,
   `debit_account_id` bigint DEFAULT NULL,
   `debit_amount` double NOT NULL,
@@ -330,7 +331,7 @@ CREATE TABLE `main_entryitem` (
   CONSTRAINT `main_entryitem_debit_account_id_1e384be8_fk_main_accounttype_id` FOREIGN KEY (`debit_account_id`) REFERENCES `main_accounttype` (`id`),
   CONSTRAINT `main_entryitem_entry_id_06c78e17_fk_main_accountingentry_id` FOREIGN KEY (`entry_id`) REFERENCES `main_accountingentry` (`id`),
   CONSTRAINT `main_entryitem_project_id_00cdf95b_fk_main_project_id` FOREIGN KEY (`project_id`) REFERENCES `main_project` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -339,6 +340,7 @@ CREATE TABLE `main_entryitem` (
 
 LOCK TABLES `main_entryitem` WRITE;
 /*!40000 ALTER TABLE `main_entryitem` DISABLE KEYS */;
+INSERT INTO `main_entryitem` VALUES (5,200,7,1,14,11,200,NULL),(6,100,8,7,11,14,100,NULL),(7,100,9,1,14,11,100,NULL),(8,900,10,8,11,15,900,NULL),(9,500,11,8,14,11,500,NULL);
 /*!40000 ALTER TABLE `main_entryitem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,7 +356,7 @@ CREATE TABLE `main_project` (
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -363,7 +365,7 @@ CREATE TABLE `main_project` (
 
 LOCK TABLES `main_project` WRITE;
 /*!40000 ALTER TABLE `main_project` DISABLE KEYS */;
-INSERT INTO `main_project` VALUES (1,'lmaooo84','2022-11-14 17:16:05.992571');
+INSERT INTO `main_project` VALUES (1,'lmaooo84','2022-11-14 17:16:05.992571'),(7,'test','2022-12-07 14:52:31.667796'),(8,'test 2','2022-12-07 14:56:19.695387');
 /*!40000 ALTER TABLE `main_project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,7 +400,7 @@ CREATE TABLE `main_user` (
 
 LOCK TABLES `main_user` WRITE;
 /*!40000 ALTER TABLE `main_user` DISABLE KEYS */;
-INSERT INTO `main_user` VALUES (1,'pbkdf2_sha256$390000$RbsaSK04cHISbEpOPdBOCd$xbbAB//mw/Vcrdo35/0fG5e7mV2rNolLFBN2q5aMaoY=','2022-12-07 13:20:32.513949',1,'aramadan','','','askme557@gmail.com',1,1,'2022-09-10 21:30:57.168619',0);
+INSERT INTO `main_user` VALUES (1,'pbkdf2_sha256$390000$RbsaSK04cHISbEpOPdBOCd$xbbAB//mw/Vcrdo35/0fG5e7mV2rNolLFBN2q5aMaoY=','2022-12-07 14:57:44.043250',1,'aramadan','','','askme557@gmail.com',1,1,'2022-09-10 21:30:57.168619',0);
 /*!40000 ALTER TABLE `main_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -468,4 +470,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-07 15:24:12
+-- Dump completed on 2022-12-14 17:03:05

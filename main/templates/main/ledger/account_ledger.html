@@ -53,6 +53,11 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
+                                    <td>
+                                        <p class="text-sm text-center mb-0 me-2">
+                                            {{ item.project_name }}
+                                        </p>
+                                    </td>
                                 </tr>
                             {% endfor %}
                             {% for item in debit_items %}
@@ -63,6 +68,11 @@
                                     <td><p class="text-sm text-center mb-0 me-2">{{ item.amount }}</p></td>
                                     <td><p class="text-sm text-center mb-0 me-2">{{ item.account_name }}</p></td>
                                     <td><p class="text-sm text-center mb-0 me-2">{{ item.number }}/{{ item.created_at|date:'Y/m/d' }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-sm text-center mb-0 me-2">
+                                            {{ item.project_name }}
+                                        </p>
                                     </td>
                                 </tr>
                             {% endfor %}

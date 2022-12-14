@@ -1,74 +1,106 @@
-{% extends 'base.html' %}
+{% extends 'main/base.html' %}
 
-{% block body %}
-    <h1>حساب استاذ {{ account.name }}</h1>
-    {% if from_date and to_date %}
-    <h2>
-        الفترة من
-        {{ from_date|date:'Y-m-d' }}
-        إلي
-        {{ to_date|date:'Y-m-d' }}
-    </h2>
-    {% endif %}
-    <hr/>
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-info shadow-info border-radius-lg pt-4 pb-3">
+                        <h5 class="text-white text-capitalize pe-3">حساب استاذ "{{ account.name }}"
+                        {% if from_date and to_date %}
+                        <span>
+                            الفترة من
+                            "{{ from_date|date:'Y-m-d' }}"
+                            إلي
+                            "{{ to_date|date:'Y-m-d' }}"
+                        </span>
+                        {% endif %}</h5>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                            <tr>
+                                <th class="text-secondary text-center text-xs font-weight-bolder opacity-7">المبلغ</th>
+                                <th class="text-secondary text-center text-xs font-weight-bolder opacity-7">البيان</th>
+                                <th class="text-secondary text-center text-xs font-weight-bolder opacity-7">
+                                    التاريخ
+                                </th>
+                                <th class="text-secondary text-center text-xs font-weight-bolder opacity-7 ps-2">
+                                    المبلغ
+                                </th>
+                                <th class="text-secondary text-center text-xs font-weight-bolder opacity-7 ps-2">
+                                    البيان
+                                </th>
+                                <th class="text-secondary text-center text-xs font-weight-bolder opacity-7 ps-2">
+                                    التاريخ
+                                </th>
+                                <th class="text-secondary text-center text-xs font-weight-bolder opacity-7 ps-2">
+                                    المشروع
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if credit_items or debit_items %}
+                            {% for item in credit_items %}
+                                <tr>
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.amount }}</p></td>
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.account_name }}</p></td>
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.number }}/{{ item.created_at|date:'Y/m/d' }}</p>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            {% endfor %}
+                            {% for item in debit_items %}
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.amount }}</p></td>
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.account_name }}</p></td>
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.number }}/{{ item.created_at|date:'Y/m/d' }}</p>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <th>{% if not is_credit_gt %}<p class="text-sm text-center mb-0 me-2">{{ total_diff }}</p>{% endif %}</th>
+                                <td>{% if not is_credit_gt %} <p class="text-sm text-center mb-0 me-2">الفرق</p> {% endif %}</td>
+                                <td></td>
+                                <th>{% if is_credit_gt %}<p class="text-sm text-center mb-0 me-2">{{ total_diff }}</p>{% endif %}</th>
+                                <td>{% if is_credit_gt %} <p class="text-sm text-center mb-0 me-2">الفرق</p> {% endif %}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th><p class="text-sm text-center mb-0 me-2">{{ total }}</th>
+                                <td><p class="text-sm text-center mb-0 me-2">المجموع</p></td>
+                                <td></td>
+                                <th><p class="text-sm text-center mb-0 me-2">{{ total }}</p></th>
+                                <td><p class="text-sm text-center mb-0 me-2">المجموع</p></td>
+                                <td></td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="6">
+                                    <p class="text-info lead mb-0 text-center">
+                                        عذرا لا يوجد قيود مسجلة  لحساب "{{ account.name }}"
+                                    </p>
 
-    <table class="table align-items-center mb-0">
-        <thead>
-            <tr>
-                <th>المبلغ</th>
-                <th>البيان</th>
-                <th>التاريخ</th>
-                <th>المبلغ</th>
-                <th>البيان</th>
-                <th>التاريخ</th>
-                <th>المشروع</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for item in credit_items %}
-            <tr>
-                <td>{{ item.amount }}</td>
-                <td>{{ item.account_name }}</td>
-                <td>{{ item.number }}/{{ item.created_at|date:'Y/m/d' }}
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>{{ item.project_name }}</td>
-            </tr>
-        {% endfor %}
-        {% for item in debit_items %}
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>{{ item.amount }}</td>
-                <td>{{ item.account_name }}</td>
-                <td>{{ item.number }}/{{ item.created_at|date:'Y/m/d' }}
-                </td>
-                <td>
-                    {% if item.project_name %}
-                    {{ item.project_name }}
-                    {% else %} <span>-</span> {% endif %}
-                </td>
-            </tr>
-        {% endfor %}
-            <tr>
-                <th>{% if not is_credit_gt %}{{ total_diff }}{% endif %}</th>
-                <td>{% if not is_credit_gt %} الفرق {% endif %}</td>
-                <td></td>
-                <th>{% if is_credit_gt %}{{ total_diff }}{% endif %}</th>
-                <td>{% if is_credit_gt %} الفرق {% endif %}</td>
-                <td></td>
-            </tr>
-            <tr>
-                <th>{{ total }}</th>
-                <td>المجموع</td>
-                <td></td>
-                <th>{{ total }}</th>
-                <td>المجموع</td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+                                </td>
+                            </tr>
+                            {% endif %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}

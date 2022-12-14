@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.forms import (
     Form, ModelForm, ValidationError, TextInput,
     CharField, BaseInlineFormSet, ChoiceField,
-    DateField, DateInput
+    DateField
 )
 from django.forms import inlineformset_factory
 from django.forms.widgets import (
@@ -291,6 +291,15 @@ class LedgerFilterForm(Form):
         for account_type in AccountType.objects
         .filter(level_type=AccountType.LevelEnum.SUB.value).all()
     ])
+
+    def __init__(self, *args, **kwargs):
+        super(LedgerFilterForm).__init__(*args, **kwargs)
+        self.fields['from_date'].widget.attrs['class'] = "form-control border pe-2 mb-3 "
+        self.fields['from_date'].widget.attrs['placeholder'] = "من تاريخ"
+        self.fields['to_date'].widget.attrs['class'] = "form-control border pe-2 mb-3"
+        self.fields['to_date'].widget.attrs['placeholder'] = "إلى تاريخ"
+        self.fields['project'].widget.attrs['class'] = "form-control border pe-2 mb-3"
+        self.fields['account'].widget.attrs['class'] = "form-control border pe-2 mb-3"
 
     def clean(self):
         super(LedgerFilterForm, self).clean()

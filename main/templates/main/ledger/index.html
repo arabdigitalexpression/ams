@@ -14,19 +14,22 @@
         <div class="col-12">
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                    <div class="bg-gradient-info shadow-info border-radius-lg pt-4 pb-3">
                         <h5 class="text-white text-capitalize pe-3">حساب الإستاذ</h5>
                     </div>
                 </div>
-                <div class="card-body px-0 pb-2">
+                <div class="card-body px-3 pb-2">
                     <form method="POST" action="{% url 'ledger' %}">
                         {% csrf_token %}
-                        {{ form.from_date }}
-                        {{ form.to_date }}
-                        {{ form.account }}
-                        {{ form.project }}
-
-                        <button type="submit" class="btn btn-primary mb-0 me-2">فتح حساب الإستاذ</button>
+                        <div class="row">
+                            <div class="col-md-6">{{ form.from_date }}</div>
+                            <div class="col-md-6">{{ form.to_date }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">{{ form.account }}</div>
+                            <div class="col-md-6">{{ form.project }}</div>
+                        </div>
+                        <button type="submit" class="btn btn-info mb-0">فتح حساب الإستاذ</button>
                     </form>
                 </div>
             </div>

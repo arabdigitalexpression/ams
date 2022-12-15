@@ -103,6 +103,24 @@ class AccountType(models.Model):
                 self.is_default
         )
 
+    @classmethod
+    def get_parents(cls, pk):
+        query = '''
+        WITH RECURSIVE parents AS (
+        SELECT AT.id, AT.name, AT.parent_account_id, 0 AS relative_depth
+        FROM main_accounttype AS AT
+        WHERE id = %s
+        UNION ALL
+        SELECT AT.id, AT.name, AT.parent_account_id, parents.relative_depth - 1
+        FROM main_accounttype AS AT, parents
+        WHERE AT.id = parents.parent_account_id
+        )
+        SELECT id, name
+        FROM parents
+        ORDER BY relative_depth
+        '''
+        return cls.objects.raw(query, [pk])
+
 
 class Project(models.Model):
     name = models.CharField(max_length=100)

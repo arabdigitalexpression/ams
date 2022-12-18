@@ -9,8 +9,23 @@
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-gradient-info shadow-info border-radius-lg pt-4 pb-3">
                         <h5 class="text-white text-capitalize pe-3">دليل الحسابات</h5>
+                        <nav class="text-white" aria-label="breadcrumb">
+                          <span class="mx-3 mb-0">
+                          {% for acc in parents %}
+                              {% if forloop.last %}
+                                <span class="text-white active">{{acc.name}}</span>
+                              {% else %}
+                              <span>
+                                  <a href="{% url 'account-type-detail' acc.id %}" class="text-white">{{acc.name}}</a>
+                              </span>
+                              <span>/</span>
+                              {% endif %}
+                          {% endfor %}
+                          </span>
+                        </nav>
                     </div>
                 </div>
+
                 <div class="card-body px-0 pb-2">
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0">

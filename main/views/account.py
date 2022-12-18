@@ -24,7 +24,7 @@ def account_list(request):
 def account_detail(request, pk):
     account = get_object_or_404(AccountType, id=pk)
     return render(request, 'main/account-type/index.html', {
-        "accounts": account.children
+        "accounts": account.children, "parents": AccountType.get_parents(pk)
     })
 
 

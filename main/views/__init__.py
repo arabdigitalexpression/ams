@@ -1,8 +1,8 @@
-from .api import (
-    UserViewSet, ProjectViewSet,
-    AccountTypeViewSet, AccountingEntryViewSet,
-    EntryItemViewSet,
-)
+# from .api import (
+#     UserViewSet, ProjectViewSet,
+#     AccountTypeViewSet, AccountingEntryViewSet,
+#     EntryItemViewSet,
+# )
 from .project import (
     ProjectDetailView, project_index,
     project_update, delete_project
@@ -26,5 +26,5 @@ from .ledger import (
 from .auth import (
     set_password_page, reset_user_password,
     user_profile, list_group, create_group,
-    update_group,
+    update_group, dashboard
 )

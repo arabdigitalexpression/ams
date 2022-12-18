@@ -4,8 +4,8 @@ from rest_framework.routers import DefaultRouter
 
 from .forms import LoginForm, PasswordChangeForm
 from .views import (
-    UserViewSet, ProjectViewSet, AccountTypeViewSet,
-    AccountingEntryViewSet, EntryItemViewSet,
+    # UserViewSet, ProjectViewSet, AccountTypeViewSet,
+    # AccountingEntryViewSet, EntryItemViewSet,
 
     ProjectDetailView, project_index,
     project_update, delete_project,
@@ -21,36 +21,38 @@ from .views import (
 
     set_password_page, reset_user_password,
     user_profile, list_group, create_group,
-    update_group,
+    update_group, dashboard,
 
     ledger_page, account_ledger
 
     # setupView
 )
-
-user_router = DefaultRouter()
-user_router.register(r'api/users', UserViewSet, basename='user')
-
-project_router = DefaultRouter()
-project_router.register(r'api/projects', ProjectViewSet, basename='project')
-
-account_type_router = DefaultRouter()
-account_type_router.register(r'api/account-types', AccountTypeViewSet, basename='accounttype')
-
-entry_router = DefaultRouter()
-entry_router.register(r'api/entries', AccountingEntryViewSet, basename='accountingentry')
-
-entry_item_router = DefaultRouter()
-entry_item_router.register(r'api/entry-items', EntryItemViewSet, basename='entryitem')
-
-urlpatterns = user_router.urls
-urlpatterns += project_router.urls
-urlpatterns += account_type_router.urls
-urlpatterns += entry_router.urls
-urlpatterns += entry_item_router.urls
-urlpatterns += [
+#
+# user_router = DefaultRouter()
+# user_router.register(r'api/users', UserViewSet, basename='user')
+#
+# project_router = DefaultRouter()
+# project_router.register(r'api/projects', ProjectViewSet, basename='project')
+#
+# account_type_router = DefaultRouter()
+# account_type_router.register(r'api/account-types', AccountTypeViewSet, basename='accounttype')
+#
+# entry_router = DefaultRouter()
+# entry_router.register(r'api/entries', AccountingEntryViewSet, basename='accountingentry')
+#
+# entry_item_router = DefaultRouter()
+# entry_item_router.register(r'api/entry-items', EntryItemViewSet, basename='entryitem')
+#
+# urlpatterns = user_router.urls
+# urlpatterns += project_router.urls
+# urlpatterns += account_type_router.urls
+# urlpatterns += entry_router.urls
+# urlpatterns += entry_item_router.urls
+urlpatterns = [
     # TODO: the setup route here are for first time web app setup wizard.
     # path('setup/', setupView, name="setup"),
+
+    path('', dashboard, name="dashboard"),
 
     path('auth/login/', auth_views.LoginView.as_view(
         form_class=LoginForm,

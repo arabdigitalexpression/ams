@@ -10,6 +10,11 @@ from main.models import User
 
 
 @login_required
+def dashboard(request):
+    return HttpResponseRedirect(reverse("entry-list"))
+
+
+@login_required
 def user_profile(request):
     return render(request, "main/user/profile.html")
 

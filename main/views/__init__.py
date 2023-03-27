@@ -20,7 +20,7 @@ from .user import (
     user_update, delete_user, user_create,
 )
 from .ledger import (
-    ledger_page, account_ledger
+    ledger_page, trial_balance, account_ledger
 )
 
 from .auth import (

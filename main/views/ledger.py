@@ -1,12 +1,13 @@
 from datetime import datetime, timedelta
+from itertools import groupby
 
 # from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.db.models import Prefetch, F, Q
+from django.db.models import Prefetch, F, Q, Sum
 from django.http import Http404
 from django.shortcuts import render
 
-from main.forms import LedgerFilterForm
+from main.forms import LedgerFilterForm, TrialBalanceFilterForm
 from main.models import AccountType, EntryItem
 
 
@@ -168,4 +169,84 @@ def ledger_page(request):
             "total": total,
         })
 
-    return render(request, "main/ledger/index.html", {"form": form})
+    return render(request, "main/ledger/index.html", {
+        "form": form, "report_type": "ledger"
+    })
+
+
+@login_required
+def trial_balance(request):
+    form = TrialBalanceFilterForm(request.POST or None)
+
+    if form.is_valid():
+        from_date = form.cleaned_data.get("from_date")
+        to_date = form.cleaned_data.get("to_date")
+        from_date_query = Q()
+        to_date_query = Q()
+
+        if from_date:
+            from_date_query = Q(entry__created_at__gt=from_date)
+        if to_date:
+            # added 1 day because date object have time set to 00:00 (i.e. beginning of day)
+            to_date_query = Q(entry__created_at__lt=(to_date + timedelta(days=1)))
+
+        credit_items = list(EntryItem.objects.filter(
+            from_date_query, to_date_query
+        ).values('credit_account_id').annotate(
+            acc_id=F('credit_account_id'), name=F('credit_account__name'),
+            sum=Sum('credit_amount'), type=F('credit_account__balance_type')
+        ))
+        debit_items = list(EntryItem.objects.filter(
+            from_date_query, to_date_query
+        ).values('debit_account_id').annotate(
+            acc_id=F('debit_account_id'), name=F('debit_account__name'),
+            sum=Sum('debit_amount'), type=F('debit_account__balance_type')
+        ))
+
+        items = list()
+        idx = list()
+        res = list()
+
+        for credit_item in credit_items:
+            items.append({
+                "id": credit_item["acc_id"], "name": credit_item["name"],
+                "sum": credit_item["sum"], "is_debit": False,
+                "type": credit_item["type"]
+            })
+        for debit_item in debit_items:
+            items.append({
+                "id": debit_item["acc_id"], "name": debit_item["name"],
+                "sum": debit_item["sum"], "is_debit": True,
+                "type": debit_item["type"]
+            })
+
+        balance_totals = groupby(sorted(
+            items, key=lambda x: x['id']
+        ), lambda x: x['id'])
+        totals = list()
+        for pk, group in balance_totals:
+            group_items = [dict(item) for item in group]
+            totals.append((
+                pk, sorted(group_items, key=lambda x: x['is_debit'])
+            ))
+
+        for item in items:
+            if item['id'] not in idx:
+                idx.append(item['id'])
+                res.append(item)
+            else:
+                index = idx.index(item['id'])
+                res[index]['sum'] = res[index]['sum'] - item['sum']
+
+        total = sum([
+            item["sum"] for item in res if item['is_debit'] is True
+        ])
+
+        return render(request, "main/ledger/trial_balance.html", {
+            "from_date": from_date, "to_date": to_date, "total": total,
+            "trial_balance": res, "totals": totals,
+        })
+
+    return render(request, "main/ledger/index.html",  {
+        "form": form, "report_type": "trial_balance"
+    })

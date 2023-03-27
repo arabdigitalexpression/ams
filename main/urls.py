@@ -23,7 +23,7 @@ from .views import (
     user_profile, list_group, create_group,
     update_group, dashboard,
 
-    ledger_page, account_ledger
+    ledger_page, trial_balance, account_ledger
 
     # setupView
 )
@@ -77,6 +77,7 @@ urlpatterns = [
     path('account-types/<int:pk>/delete/', delete_account, name='account-type-delete'),
 
     path('ledger/', ledger_page, name='ledger'),
+    path('ledger/trial-balance', trial_balance, name='trial-balance'),
     path('ledger/account/<int:pk>/', account_ledger, name='account-ledger'),
 
     path('entries/', AccountingEntryListView.as_view(), name='entry-list'),

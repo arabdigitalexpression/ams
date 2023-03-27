@@ -1,0 +1,146 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-info shadow-info border-radius-lg pt-4 pb-3">
+                        <h5 class="text-white text-capitalize pe-3">ميزان المراجعة
+                        {% if from_date and to_date %}
+                        <span>
+                            الفترة من
+                            "{{ from_date|date:'Y-m-d' }}"
+                            إلي
+                            "{{ to_date|date:'Y-m-d' }}"
+                        </span>
+                        {% endif %}</h5>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <button id="show_totals_btn" class="btn btn-light" onclick="show_totals()">
+                        ميزان المراجعة بالمجاميع
+                    </button>
+                    <button id="show_balance_btn" class="btn btn-light d-none" onclick="show_balance()">
+                        ميزان المراجعة باﻷرصدة
+                    </button>
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                            <tr>
+                                <th class="text-secondary text-center text-xs font-weight-bolder opacity-7 ps-2">
+                                    البيان
+                                </th>
+                                <th class="text-secondary text-center text-xs font-weight-bolder opacity-7">مدين</th>
+                                <th class="text-secondary text-center text-xs font-weight-bolder opacity-7">دائن</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if trial_balance %}
+                            {% for item in trial_balance %}
+                                <tr class="balance">
+                                    <td><p class="text-sm text-center mb-0 me-2">ح/ {{ item.name }}</p></td>
+                                {% if item.sum > 0 and item.is_debit is False %}
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.sum }}</p></td>
+                                    <td></td>
+                                {% elif item.sum < 0 and item.is_debit is False %}
+                                    <td></td>
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.sum }}</p></td>
+                                {% elif item.sum > 0 and item.is_debit is True %}
+                                    <td></td>
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.sum }}</p></td>
+                                {% elif item.sum < 0 and item.is_debit is True %}
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.sum }}</p></td>
+                                    <td></td>
+                                {% elif item.sum == 0 %}
+                                    {% if item.type == 'C' %}
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.sum }}</p></td>
+                                    <td></td>
+                                    {% else %}
+                                    <td></td>
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.sum }}</p></td>
+                                    {% endif %}
+                                {% endif %}
+                                </tr>
+                            {% endfor %}
+                            {% for id, group in totals %}
+                                <tr class="totals d-none">
+                                {% for item in group %}
+                                    {% if forloop.first %}
+                                    <td><p class="text-sm text-center mb-0 me-2">ح/ {{ item.name }}</p></td>
+                                    {% endif %}
+
+                                    {% if group|length == 1 %}
+                                        {% if item.is_debit is True %}
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.sum }}</p></td>
+                                    <td></td>
+                                        {% else %}
+                                    <td></td>
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.sum }}</p></td>
+                                        {% endif %}
+                                    {% else %}
+                                    <td><p class="text-sm text-center mb-0 me-2">{{ item.sum }}</p></td>
+                                    {% endif %}
+                                {% endfor %}
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td><p class="text-sm text-center mb-0 me-2">المجموع</p></td>
+                                <td><p class="text-sm text-center mb-0 me-2">{{ total }}</td>
+                                <td><p class="text-sm text-center mb-0 me-2">{{ total }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="6">
+                                    <p class="text-info lead mb-0 text-center">
+                                        عذرا لا يوجد قيود مسجلة  لحساب "{{ account.name }}"
+                                    </p>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+{{ bloc.super }}
+<script>
+function show_totals() {
+    let totals_elems = document.querySelectorAll(".totals.d-none");
+    totals_elems.forEach(elm => {
+        elm.classList.remove('d-none');
+    });
+    let balance_elems = document.querySelectorAll(".balance");
+    balance_elems.forEach(elm => {
+        elm.classList.add('d-none');
+    });
+
+    document.querySelector('#show_totals_btn').classList.add('d-none');
+    document.querySelector('#show_balance_btn').classList.remove('d-none');
+}
+
+function show_balance() {
+    let balance_elems = document.querySelectorAll(".balance.d-none");
+    balance_elems.forEach(elm => {
+        elm.classList.remove('d-none');
+    });
+    let totals_elems = document.querySelectorAll(".totals");
+    totals_elems.forEach(elm => {
+        elm.classList.add('d-none');
+    });
+
+    document.querySelector('#show_balance_btn').classList.add('d-none');
+    document.querySelector('#show_totals_btn').classList.remove('d-none');
+
+}
+</script>
+{% endblock %}

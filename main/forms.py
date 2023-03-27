@@ -316,3 +316,14 @@ class LedgerFilterForm(Form):
         account = self.cleaned_data['account']
         if not account:
             raise ValidationError("برجاء إختيار نوع حساب علي الأقل.")
+
+
+class TrialBalanceFilterForm(Form):
+    from_date = DateField(required=False, widget=DateInput(attrs={
+        "type": "date", "class": "form-control border pe-2 mb-3 ",
+        "placeholder": "من تاريخ"
+    }))
+    to_date = DateField(required=False, widget=DateInput(attrs={
+        "type": "date", "class": "form-control border pe-2 mb-3 ",
+        "placeholder": "إلى تاريخ"
+    }))

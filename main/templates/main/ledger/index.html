@@ -15,11 +15,24 @@
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-gradient-info shadow-info border-radius-lg pt-4 pb-3">
-                        <h5 class="text-white text-capitalize pe-3">حساب الإستاذ</h5>
+                        <h5 class="text-white text-capitalize pe-3">
+                            {% if report_type == 'trial_balance' %}
+                                ميزان المراجعة
+                            {% else %}
+                                حساب الإستاذ
+                            {% endif %}
+                        </h5>
                     </div>
                 </div>
                 <div class="card-body px-3 pb-2">
-                    <form method="POST" action="{% url 'ledger' %}">
+                    <form
+                            method="POST"
+                            {% if report_type == 'trial_balance' %}
+                            action="{% url 'trial-balance' %}"
+                            {% else %}
+                            action="{% url 'ledger' %}"
+                            {% endif %}
+                    >
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6">{{ form.from_date }}</div>
@@ -29,7 +42,13 @@
                             <div class="col-md-6">{{ form.account }}</div>
                             <div class="col-md-6">{{ form.project }}</div>
                         </div>
-                        <button type="submit" class="btn btn-info mb-0">فتح حساب الإستاذ</button>
+                        <button type="submit" class="btn btn-info mb-0">فتح
+                            {% if report_type == 'trial_balance' %}
+                                ميزان المراجعة
+                            {% else %}
+                                حساب الإستاذ
+                            {% endif %}
+                        </button>
                     </form>
                 </div>
             </div>
